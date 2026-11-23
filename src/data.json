@@ -56,8 +56,8 @@
     "es": "Arranca, reproduce la intro, carga el mundo y luego imagen negra"
    },
    "note": {
-    "en": "Do not run it on a real GPU yet: entering the world can hang the GPU and reset the display driver. Tested on one machine (RX 6700 XT).",
-    "es": "No lo ejecutes aún en una GPU real: entrar al mundo puede colgar la GPU y reiniciar el driver de video. Probado en una sola máquina (RX 6700 XT)."
+    "en": "Frames in the world are black and take 1.5-3 s each. Its README still warns that entering the world on a real GPU can hang it and reset the display driver. Tested on one machine (RX 6700 XT).",
+    "es": "Los frames del mundo salen negros y tardan 1,5-3 s cada uno. Su README sigue advirtiendo que entrar al mundo en una GPU real puede colgarla y reiniciar el driver de video. Probado en una sola máquina (RX 6700 XT)."
    },
    "metrics": [
     {
@@ -97,8 +97,8 @@
     {
      "kind": "readme",
      "text": {
-      "en": "README: the world (first mission's intro) is reached, the picture is black and the host GPU fails within seconds.",
-      "es": "README: se llega al mundo (intro de la primera misión), la imagen es negra y la GPU del equipo falla en segundos."
+      "en": "README: the world (first mission's intro) is reached and runs for two minutes without a GPU failure, but the picture is black and each frame takes 1.5-3 s.",
+      "es": "README: se llega al mundo (intro de la primera misión) y corre dos minutos sin fallo de GPU, pero la imagen es negra y cada frame tarda 1,5-3 s."
      },
      "url": "https://github.com/Marvisak/VIctory#status-2026-11-23"
     },
@@ -114,8 +114,8 @@
    "checked": {
     "date": "2026-11-23",
     "against": {
-     "en": "README",
-     "es": "README"
+     "en": "README, re-read after a watcher alert",
+     "es": "README, releído tras una alerta del vigilante"
     }
    },
    "started": "2026-11-23"
@@ -815,16 +815,16 @@
   ],
   "cons": [
    {
-    "en": "Rendering the world currently fails and can hang the GPU or reset the display driver.",
-    "es": "Renderizar el mundo hoy falla y puede colgar la GPU o reiniciar el driver de video."
+    "en": "In the world the picture is still black and each frame takes 1.5-3 s; VIctory still warns that it can hang a real GPU.",
+    "es": "En el mundo la imagen sigue negra y cada frame tarda 1,5-3 s; VIctory sigue advirtiendo que puede colgar una GPU real."
    },
    {
     "en": "VIctory covers only about 65% of compute shaders and still lacks the ray-tracing builder's shaders.",
     "es": "VIctory cubre solo cerca del 65% de los compute shaders y aún le faltan los del constructor de ray tracing."
    },
    {
-    "en": "VIctory notes that frames take seconds in the world and some GPU features are missing.",
-    "es": "VIctory indica que los frames tardan segundos en el mundo y faltan algunas funciones de GPU."
+    "en": "VIctory says frames are black because untranslated shaders drop part of the geometry.",
+    "es": "VIctory dice que los frames salen negros porque los shaders sin traducir descartan parte de la geometría."
    },
    {
     "en": "Take-Two says it is strengthening its defences against unofficial ports.",
