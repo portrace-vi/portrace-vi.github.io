@@ -6,24 +6,24 @@
   "sha": "2a584d30973b09fa113642748ecfd8477ab82cb3749dbb84f00e13c4a1a361d2"
  },
  "Marvisak/VIctory": {
-  "baseline": true,
-  "changed_at": "2026-11-23T23:04:06Z",
+  "baseline": false,
+  "changed_at": "2026-11-23T23:18:55Z",
   "releases": [],
-  "sha": "e99325bd43e2607483bf24bfb03fd11c208503ed8aa1f44d4ef766b897f1c81b"
+  "sha": "43aa7c1ec51a88df8d03d1d9655e1b7420698b92acd7efe474372c9de409600a"
  },
  "ProjectLeonida/Leonida": {
-  "baseline": true,
-  "changed_at": "2026-11-23T23:04:06Z",
+  "baseline": false,
+  "changed_at": "2026-11-23T23:18:55Z",
   "releases": [],
-  "sha": "24b6d3a1cdc6eab5bdc8e5bbc656630bdf7d7b81d8368d47bc18b703f1b39918"
+  "sha": "d7b1e00cc35b65c90296a10438315da0f6b2e7e102349bce208afd2f4b087045"
  },
  "R0Y00/Xbox2Windows": {
-  "baseline": true,
-  "changed_at": "2026-11-23T23:04:06Z",
+  "baseline": false,
+  "changed_at": "2026-11-23T23:18:55Z",
   "releases": [
    "gpu-check-v0.1.0"
   ],
-  "sha": "7d4e2af353ebd0782d17cfe823058c357281bf21426414dd6561c60e72592130"
+  "sha": "943805f9b75adc561e0f0837a24bbca89dbd3f93c103cd6785eda51af42b8cc3"
  },
  "ivall/xcl": {
   "baseline": true,
