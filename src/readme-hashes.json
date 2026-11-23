@@ -1,0 +1,46 @@
+{
+ "Hylanderry/DedSec": {
+  "baseline": true,
+  "changed_at": "2026-11-23T23:04:06Z",
+  "releases": [],
+  "sha": "2a584d30973b09fa113642748ecfd8477ab82cb3749dbb84f00e13c4a1a361d2"
+ },
+ "Marvisak/VIctory": {
+  "baseline": true,
+  "changed_at": "2026-11-23T23:04:06Z",
+  "releases": [],
+  "sha": "e99325bd43e2607483bf24bfb03fd11c208503ed8aa1f44d4ef766b897f1c81b"
+ },
+ "ProjectLeonida/Leonida": {
+  "baseline": true,
+  "changed_at": "2026-11-23T23:04:06Z",
+  "releases": [],
+  "sha": "24b6d3a1cdc6eab5bdc8e5bbc656630bdf7d7b81d8368d47bc18b703f1b39918"
+ },
+ "R0Y00/Xbox2Windows": {
+  "baseline": true,
+  "changed_at": "2026-11-23T23:04:06Z",
+  "releases": [
+   "gpu-check-v0.1.0"
+  ],
+  "sha": "7d4e2af353ebd0782d17cfe823058c357281bf21426414dd6561c60e72592130"
+ },
+ "ivall/xcl": {
+  "baseline": true,
+  "changed_at": "2026-11-23T23:04:06Z",
+  "releases": [],
+  "sha": "4bc16f0c97051a6a8796b7b8cb0010f86cdf44e93a515443247aaf5b21e55e8f"
+ },
+ "rpatty-dev/PercyScarlett": {
+  "baseline": true,
+  "changed_at": "2026-11-23T23:04:06Z",
+  "releases": [
+   "v0.9.0",
+   "v0.4.0",
+   "v0.3.11",
+   "v0.3.10",
+   "v0.3.9"
+  ],
+  "sha": "c59f7bfa194bf9aa1d7d3bb3cc3bc6cfc7379536adf00c84236d96827915d8ce"
+ }
+}

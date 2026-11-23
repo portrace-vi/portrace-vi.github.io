@@ -1,0 +1,446 @@
+[
+[
+"rtx\\s*5090",
+"GeForce RTX 5090",
+420,
+32
+],
+[
+"rtx\\s*5080",
+"GeForce RTX 5080",
+280,
+16
+],
+[
+"rtx\\s*5070\\s*ti",
+"GeForce RTX 5070 Ti",
+230,
+16
+],
+[
+"rtx\\s*5070",
+"GeForce RTX 5070",
+165,
+12
+],
+[
+"rtx\\s*5060\\s*ti",
+"GeForce RTX 5060 Ti",
+130,
+16
+],
+[
+"rtx\\s*5060",
+"GeForce RTX 5060",
+110,
+8
+],
+[
+"rtx\\s*4090",
+"GeForce RTX 4090",
+340,
+24
+],
+[
+"rtx\\s*4080\\s*super",
+"GeForce RTX 4080 SUPER",
+260,
+16
+],
+[
+"rtx\\s*4080",
+"GeForce RTX 4080",
+250,
+16
+],
+[
+"rtx\\s*4070\\s*ti\\s*super",
+"GeForce RTX 4070 Ti SUPER",
+215,
+16
+],
+[
+"rtx\\s*4070\\s*ti",
+"GeForce RTX 4070 Ti",
+190,
+12
+],
+[
+"rtx\\s*4070\\s*super",
+"GeForce RTX 4070 SUPER",
+175,
+12
+],
+[
+"rtx\\s*4070",
+"GeForce RTX 4070",
+150,
+12
+],
+[
+"rtx\\s*4060\\s*ti",
+"GeForce RTX 4060 Ti",
+115,
+8
+],
+[
+"rtx\\s*4060",
+"GeForce RTX 4060",
+98,
+8
+],
+[
+"rtx\\s*3090",
+"GeForce RTX 3090",
+185,
+24
+],
+[
+"rtx\\s*3080\\s*ti",
+"GeForce RTX 3080 Ti",
+175,
+12
+],
+[
+"rtx\\s*3080",
+"GeForce RTX 3080",
+160,
+10
+],
+[
+"rtx\\s*3070\\s*ti",
+"GeForce RTX 3070 Ti",
+135,
+8
+],
+[
+"rtx\\s*3070",
+"GeForce RTX 3070",
+125,
+8
+],
+[
+"rtx\\s*3060\\s*ti",
+"GeForce RTX 3060 Ti",
+105,
+8
+],
+[
+"rtx\\s*3060",
+"GeForce RTX 3060",
+78,
+12
+],
+[
+"rtx\\s*3050",
+"GeForce RTX 3050",
+58,
+8
+],
+[
+"rtx\\s*2080\\s*ti",
+"GeForce RTX 2080 Ti",
+125,
+11
+],
+[
+"rtx\\s*2080\\s*super",
+"GeForce RTX 2080 SUPER",
+105,
+8
+],
+[
+"rtx\\s*2080",
+"GeForce RTX 2080",
+100,
+8
+],
+[
+"rtx\\s*2070\\s*super",
+"GeForce RTX 2070 SUPER",
+93,
+8
+],
+[
+"rtx\\s*2070",
+"GeForce RTX 2070",
+85,
+8
+],
+[
+"rtx\\s*2060\\s*super",
+"GeForce RTX 2060 SUPER",
+82,
+8
+],
+[
+"rtx\\s*2060",
+"GeForce RTX 2060",
+70,
+6
+],
+[
+"gtx\\s*1660\\s*ti",
+"GeForce GTX 1660 Ti",
+70,
+6
+],
+[
+"gtx\\s*1660",
+"GeForce GTX 1660 / SUPER",
+66,
+6
+],
+[
+"gtx\\s*1650",
+"GeForce GTX 1650",
+38,
+4
+],
+[
+"gtx\\s*1080\\s*ti",
+"GeForce GTX 1080 Ti",
+97,
+11
+],
+[
+"gtx\\s*1080",
+"GeForce GTX 1080",
+85,
+8
+],
+[
+"gtx\\s*1070",
+"GeForce GTX 1070",
+66,
+8
+],
+[
+"gtx\\s*1060",
+"GeForce GTX 1060",
+50,
+6
+],
+[
+"gtx\\s*1050",
+"GeForce GTX 1050 Ti",
+33,
+4
+],
+[
+"rx\\s*9070\\s*xt",
+"Radeon RX 9070 XT",
+260,
+16
+],
+[
+"rx\\s*9070",
+"Radeon RX 9070",
+230,
+16
+],
+[
+"rx\\s*9060\\s*xt",
+"Radeon RX 9060 XT",
+125,
+16
+],
+[
+"rx\\s*7900\\s*xtx",
+"Radeon RX 7900 XTX",
+275,
+24
+],
+[
+"rx\\s*7900\\s*xt",
+"Radeon RX 7900 XT",
+235,
+20
+],
+[
+"rx\\s*7900\\s*gre",
+"Radeon RX 7900 GRE",
+195,
+16
+],
+[
+"rx\\s*7800\\s*xt",
+"Radeon RX 7800 XT",
+175,
+16
+],
+[
+"rx\\s*7700\\s*xt",
+"Radeon RX 7700 XT",
+140,
+12
+],
+[
+"rx\\s*7600",
+"Radeon RX 7600",
+100,
+8
+],
+[
+"rx\\s*6950\\s*xt",
+"Radeon RX 6950 XT",
+215,
+16
+],
+[
+"rx\\s*6900\\s*xt",
+"Radeon RX 6900 XT",
+205,
+16
+],
+[
+"rx\\s*6800\\s*xt",
+"Radeon RX 6800 XT",
+190,
+16
+],
+[
+"rx\\s*6800",
+"Radeon RX 6800",
+165,
+16
+],
+[
+"rx\\s*6750\\s*xt",
+"Radeon RX 6750 XT",
+138,
+12
+],
+[
+"rx\\s*6700\\s*xt",
+"Radeon RX 6700 XT",
+130,
+12
+],
+[
+"rx\\s*6650\\s*xt",
+"Radeon RX 6650 XT",
+106,
+8
+],
+[
+"rx\\s*6600\\s*xt",
+"Radeon RX 6600 XT",
+102,
+8
+],
+[
+"rx\\s*6600",
+"Radeon RX 6600",
+90,
+8
+],
+[
+"rx\\s*6500",
+"Radeon RX 6500 XT",
+45,
+4
+],
+[
+"rx\\s*5700",
+"Radeon RX 5700 / XT",
+95,
+8
+],
+[
+"rx\\s*5600",
+"Radeon RX 5600 XT",
+78,
+6
+],
+[
+"rx\\s*5500",
+"Radeon RX 5500 XT",
+55,
+8
+],
+[
+"rx\\s*590",
+"Radeon RX 590",
+58,
+8
+],
+[
+"rx\\s*580",
+"Radeon RX 580",
+52,
+8
+],
+[
+"rx\\s*570",
+"Radeon RX 570",
+45,
+4
+],
+[
+"890m",
+"Radeon 890M (iGPU)",
+50,
+4
+],
+[
+"780m",
+"Radeon 780M (iGPU)",
+38,
+4
+],
+[
+"vega",
+"Radeon Vega (iGPU)",
+15,
+2
+],
+[
+"arc.*b580",
+"Intel Arc B580",
+120,
+12
+],
+[
+"arc.*b570",
+"Intel Arc B570",
+105,
+10
+],
+[
+"arc.*a770",
+"Intel Arc A770",
+112,
+16
+],
+[
+"arc.*a750",
+"Intel Arc A750",
+100,
+8
+],
+[
+"arc.*a580",
+"Intel Arc A580",
+85,
+8
+],
+[
+"arc.*a380",
+"Intel Arc A380",
+40,
+6
+],
+[
+"iris\\s*xe",
+"Intel Iris Xe (iGPU)",
+20,
+2
+],
+[
+"uhd|hd graphics",
+"Intel UHD / HD Graphics",
+8,
+1
+]
+]

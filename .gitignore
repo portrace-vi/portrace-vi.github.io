@@ -1,0 +1,21 @@
+# Se genera en cada build o por el vigilante
+public/
+/en/
+/es/
+/index.html
+/404.html
+/robots.txt
+/sitemap.xml
+/.nojekyll
+assets/data.js
+assets/gpus.js
+assets/cpus.js
+assets/strings.js
+src/snapshot.json
+changes.md
+__pycache__/
+*.pyc
+
+# Notas internas: no van al repo público
+MARKETING.md
+PUBLICAR.md

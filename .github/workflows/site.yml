@@ -1,0 +1,74 @@
+name: site
+
+# Se ejecuta: al subir cambios, cada 30 minutos (vigilante de los repos) y a mano desde la pestaña Actions.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # guardar src/readme-hashes.json cuando cambia un README
+  issues: write     # abrir un issue cuando algo cambia
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Watch the tracked repos
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python tools/watch.py
+
+      - name: Save README hashes and open an issue if something changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -s changes.md ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/readme-hashes.json
+            git commit -m "watch: changes detected" || true
+            git push || true
+            gh issue create --title "Tracked repos changed ($(date -u +%F))" --body-file changes.md
+          fi
+
+      - name: Build
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          OWNER="${GITHUB_REPOSITORY_OWNER,,}"
+          REPO="${GITHUB_REPOSITORY#*/}"; REPO="${REPO,,}"
+          if [ -n "$SITE_URL" ]; then BASE="$SITE_URL"
+          elif [ "$REPO" = "$OWNER.github.io" ]; then BASE="https://$OWNER.github.io"
+          else BASE="https://$OWNER.github.io/$REPO"; fi
+          python build.py --base "$BASE"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

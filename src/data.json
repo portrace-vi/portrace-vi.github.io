@@ -1,0 +1,852 @@
+{
+ "updated": "2026-11-23",
+ "officialPC": false,
+ "milestones": [
+  {
+   "id": "extract",
+   "en": "Asset & shader extraction",
+   "es": "Extracción de assets y shaders"
+  },
+  {
+   "id": "shaders",
+   "en": "Shaders translated to PC GPU APIs",
+   "es": "Shaders traducidos a APIs de GPU de PC"
+  },
+  {
+   "id": "recomp",
+   "en": "Game code running on PC (recompiled or hosted)",
+   "es": "Código del juego ejecutándose en PC (recompilado o alojado)"
+  },
+  {
+   "id": "boot",
+   "en": "Boots to title screen",
+   "es": "Arranca hasta la pantalla de título"
+  },
+  {
+   "id": "play",
+   "en": "Playable in-game",
+   "es": "Jugable dentro del juego"
+  },
+  {
+   "id": "stable",
+   "en": "Stable performance",
+   "es": "Rendimiento estable"
+  }
+ ],
+ "projects": [
+  {
+   "name": "VIctory",
+   "author": "Marvisak",
+   "url": "https://github.com/Marvisak/VIctory",
+   "github": "Marvisak/VIctory",
+   "approach": {
+    "en": "Runs the console build's x86-64 code unchanged inside its own process and supplies the platform layer on top of Direct3D 12.",
+    "es": "Ejecuta sin cambios el código x86-64 del build de consola dentro de su propio proceso y aporta la capa de plataforma sobre Direct3D 12."
+   },
+   "status": {
+    "extract": "done",
+    "shaders": "wip",
+    "recomp": "done",
+    "boot": "done",
+    "play": "wip",
+    "stable": "todo"
+   },
+   "highlight": {
+    "en": "Boots, plays the intro, loads the world, then a black picture",
+    "es": "Arranca, reproduce la intro, carga el mundo y luego imagen negra"
+   },
+   "note": {
+    "en": "Do not run it on a real GPU yet: entering the world can hang the GPU and reset the display driver. Tested on one machine (RX 6700 XT).",
+    "es": "No lo ejecutes aún en una GPU real: entrar al mundo puede colgar la GPU y reiniciar el driver de video. Probado en una sola máquina (RX 6700 XT)."
+   },
+   "metrics": [
+    {
+     "label": {
+      "en": "Mesh shaders (world)",
+      "es": "Mesh shaders (mundo)"
+     },
+     "done": 8191,
+     "total": 8506
+    },
+    {
+     "label": {
+      "en": "Vertex/pixel shaders (world)",
+      "es": "Vertex/pixel shaders (mundo)"
+     },
+     "done": 10617,
+     "total": 12346
+    },
+    {
+     "label": {
+      "en": "Compute shaders (world)",
+      "es": "Compute shaders (mundo)"
+     },
+     "done": 1643,
+     "total": 2539
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README status table: boot, first-boot screens, intro video with sound, start screen, profile and saves all work at 30 fps; loading into the world works (about 50 s).",
+      "es": "Tabla de estado del README: arranque, pantallas iniciales, video de intro con sonido, pantalla de inicio, perfil y partidas funcionan a 30 fps; la carga al mundo funciona (unos 50 s)."
+     },
+     "url": "https://github.com/Marvisak/VIctory#status-2026-11-23"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: the world (first mission's intro) is reached, the picture is black and the host GPU fails within seconds.",
+      "es": "README: se llega al mundo (intro de la primera misión), la imagen es negra y la GPU del equipo falla en segundos."
+     },
+     "url": "https://github.com/Marvisak/VIctory#status-2026-11-23"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: world shader counts of 8,191/8,506 mesh, 10,617/12,346 vertex/pixel and 1,643/2,539 compute; ray-tracing builder shaders still missing.",
+      "es": "README: en el mundo, 8.191/8.506 mesh, 10.617/12.346 vertex/pixel y 1.643/2.539 compute; faltan los shaders del constructor de ray tracing."
+     },
+     "url": "https://github.com/Marvisak/VIctory#status-2026-11-23"
+    }
+   ],
+   "checked": {
+    "date": "2026-11-23",
+    "against": {
+     "en": "README",
+     "es": "README"
+    }
+   },
+   "started": "2026-11-23"
+  },
+  {
+   "name": "XCL",
+   "author": "ivall",
+   "url": "https://github.com/ivall/xcl",
+   "github": "ivall/xcl",
+   "approach": {
+    "en": "Compatibility layer in the spirit of Wine/Proton: the game's x64 code runs natively, console libraries are reimplemented and RDNA2 shaders are recompiled to DXIL.",
+    "es": "Capa de compatibilidad al estilo Wine/Proton: el código x64 del juego corre nativo, se reimplementan las librerías de la consola y los shaders RDNA2 se recompilan a DXIL."
+   },
+   "status": {
+    "extract": "done",
+    "shaders": "done",
+    "recomp": "done",
+    "boot": "wip",
+    "play": "todo",
+    "stable": "todo"
+   },
+   "highlight": {
+    "en": "Already runs other retail Xbox games; GTA VI reported at the intro, then a black screen",
+    "es": "Ya corre otros juegos comerciales de Xbox; GTA VI reportado hasta la intro y luego pantalla negra"
+   },
+   "note": {
+    "en": "The README never names GTA VI. Its numbers match (26,503 shader records) and the GTA VI state comes from a Discord report we could not verify. Treat the GTA VI row as provisional.",
+    "es": "El README nunca nombra a GTA VI. Sus números coinciden (26.503 registros de shaders) y el estado de GTA VI viene de un reporte de Discord que no pudimos verificar. Toma la fila de GTA VI como provisional."
+   },
+   "metrics": [
+    {
+     "label": {
+      "en": "Shader records translated (retail pack)",
+      "es": "Registros de shaders traducidos (pack comercial)"
+     },
+     "done": 26503,
+     "total": 26503
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: retail Xbox games run. Minecraft Preview and Unicorn Overlord are fully playable; Fortnite and XDefiant work as far as their offline state allows.",
+      "es": "README: corren juegos comerciales de Xbox. Minecraft Preview y Unicorn Overlord son totalmente jugables; Fortnite y XDefiant funcionan hasta donde permite su estado sin conexión."
+     },
+     "url": "https://github.com/ivall/xcl#games"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: 100% of an unnamed retail game's shaders translate (26,698 programs, 26,503 records). It also describes that unnamed newer game starting in about 4 s, steady 30 fps, menus and settings, gameplay not reached.",
+      "es": "README: el 100% de los shaders de un juego comercial sin nombre se traduce (26.698 programas, 26.503 registros). También describe a ese juego nuevo sin nombre: arranca en unos 4 s, 30 fps estables, menús y ajustes, sin llegar a jugar."
+     },
+     "url": "https://github.com/ivall/xcl#highlights"
+    },
+    {
+     "kind": "inferred",
+     "text": {
+      "en": "Our inference: the 26,503 count matches GTA VI's shader pack as reported by Leonida, so we assume the unnamed game is GTA VI.",
+      "es": "Inferencia nuestra: la cifra de 26.503 coincide con el pack de shaders de GTA VI que reporta Leonida, así que asumimos que el juego sin nombre es GTA VI."
+     }
+    },
+    {
+     "kind": "discord",
+     "text": {
+      "en": "Relayed from the project's Discord by a reader of this site, not verified by us: it reaches the intro and then shows a black screen.",
+      "es": "Relayado desde el Discord del proyecto por un lector de este sitio, sin verificar por nosotros: llega a la intro y luego queda en pantalla negra."
+     }
+    }
+   ],
+   "checked": {
+    "date": "2026-11-23",
+    "against": {
+     "en": "README + reader report",
+     "es": "README + reporte de un lector"
+    }
+   },
+   "discord": "https://discord.gg/yB5tstRHrn",
+   "started": "2026-11-20"
+  },
+  {
+   "name": "PercyScarlett",
+   "author": "rpatty-dev",
+   "url": "https://github.com/rpatty-dev/PercyScarlett",
+   "github": "rpatty-dev/PercyScarlett",
+   "approach": {
+    "en": "Clean-room Rust translation layer: maps the console executable in-process and supplies D3D12.X, memory, runtime, input and audio.",
+    "es": "Capa de traducción en Rust, sin copiar código: mapea el ejecutable de consola en el proceso y aporta D3D12.X, memoria, runtime, entrada y audio."
+   },
+   "status": {
+    "extract": "unknown",
+    "shaders": "wip",
+    "recomp": "done",
+    "boot": "wip",
+    "play": "todo",
+    "stable": "todo"
+   },
+   "highlight": {
+    "en": "Minecraft (Xbox build) plays in-world; GTA VI reaches a frame loop with black frames",
+    "es": "Minecraft (build de Xbox) se juega dentro del mundo; GTA VI llega a un bucle de frames con imágenes negras"
+   },
+   "note": {
+    "en": "For GTA VI its README says it stops at a GPU hang about 5 seconds in, plus an intermittent early device removal.",
+    "es": "Para GTA VI su README dice que se detiene en un cuelgue de GPU unos 5 segundos después, más una pérdida intermitente del dispositivo al inicio."
+   },
+   "evidence": [
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README status table, GTA VI row: boots to a running frame loop and first PresentX (black frames); stops at a GPU hang about 5 s in.",
+      "es": "Tabla de estado del README, fila de GTA VI: arranca hasta un bucle de frames y el primer PresentX (imágenes negras); se detiene en un cuelgue de GPU unos 5 s después."
+     },
+     "url": "https://github.com/rpatty-dev/PercyScarlett#status"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README with screenshots: an unmodified Minecraft Xbox build reaches the main menu and plays in-world; about half of launches still hit a heap-corruption bug.",
+      "es": "README con capturas: un Minecraft de Xbox sin modificar llega al menú y se juega dentro del mundo; cerca de la mitad de los arranques aún choca con un bug de corrupción de memoria."
+     },
+     "url": "https://github.com/rpatty-dev/PercyScarlett#status"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: the RDNA2 to DXIL shader lifter is experimental; the runtime path still uses shader stand-ins.",
+      "es": "README: el traductor de shaders RDNA2 a DXIL es experimental; el camino de ejecución aún usa sustitutos de shaders."
+     },
+     "url": "https://github.com/rpatty-dev/PercyScarlett#status"
+    }
+   ],
+   "checked": {
+    "date": "2026-11-23",
+    "against": {
+     "en": "README",
+     "es": "README"
+    }
+   },
+   "started": "2026-11-21"
+  },
+  {
+   "name": "Leonida",
+   "author": "ItsNotRexed",
+   "url": "https://github.com/ProjectLeonida/Leonida",
+   "github": "ProjectLeonida/Leonida",
+   "approach": {
+    "en": "Static recompilation: runs the game's x86-64 code natively, reimplements console software and translates RDNA2 shaders to SPIR-V for Vulkan.",
+    "es": "Recompilación estática: corre el código x86-64 del juego de forma nativa, reimplementa el software de la consola y traduce shaders RDNA2 a SPIR-V para Vulkan."
+   },
+   "status": {
+    "extract": "done",
+    "shaders": "done",
+    "recomp": "wip",
+    "boot": "todo",
+    "play": "todo",
+    "stable": "todo"
+   },
+   "highlight": {
+    "en": "All 26,503 shaders translated and validated, game does not boot yet",
+    "es": "Los 26.503 shaders traducidos y validados, el juego aún no arranca"
+   },
+   "note": {
+    "en": "Its own README: early, the game does not boot yet; the loader is untested against the real executable.",
+    "es": "Su propio README: etapa temprana, el juego aún no arranca; el cargador no está probado contra el ejecutable real."
+   },
+   "metrics": [
+    {
+     "label": {
+      "en": "Shaders translated to SPIR-V",
+      "es": "Shaders traducidos a SPIR-V"
+     },
+     "done": 26503,
+     "total": 26503
+    },
+    {
+     "label": {
+      "en": "Passed SPIR-V validation",
+      "es": "Pasaron validación SPIR-V"
+     },
+     "done": 26503,
+     "total": 26503
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: \"Early. The game does not boot yet.\" Booting and anything playable are marked as not done.",
+      "es": "README: etapa temprana, el juego aún no arranca. Arranque y todo lo jugable figuran como no hechos."
+     },
+     "url": "https://github.com/ProjectLeonida/Leonida#project-status"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: 26,503 of 26,503 shaders translated, and 26,503 passed spirv-val in the Linux rerun. Checked on real GPUs only with small hand-written test shaders.",
+      "es": "README: 26.503 de 26.503 shaders traducidos y 26.503 pasaron spirv-val en la repetición en Linux. En GPUs reales solo se probaron shaders de prueba pequeños escritos a mano."
+     },
+     "url": "https://github.com/ProjectLeonida/Leonida#project-status"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README: the PE loader runs a stand-in executable end to end and is untested against the real executable; D3D12 to Vulkan layer and ray tracing are in progress.",
+      "es": "README: el cargador PE corre de punta a punta un ejecutable de prueba y no está probado contra el ejecutable real; la capa D3D12 a Vulkan y el ray tracing están en progreso."
+     },
+     "url": "https://github.com/ProjectLeonida/Leonida#project-status"
+    }
+   ],
+   "checked": {
+    "date": "2026-11-23",
+    "against": {
+     "en": "README",
+     "es": "README"
+    }
+   },
+   "discord": "https://discord.gg/rexed",
+   "started": "2026-11-20"
+  },
+  {
+   "name": "DedSec",
+   "author": "Hylanderry",
+   "url": "https://github.com/Hylanderry/DedSec",
+   "github": "Hylanderry/DedSec",
+   "approach": {
+    "en": "Runs the console's x64 code directly on Windows with its own console-system shims and an RDNA2 to HLSL translator on DirectX 12.",
+    "es": "Corre el código x64 de la consola directamente en Windows con sus propios reemplazos del sistema de consola y un traductor RDNA2 a HLSL sobre DirectX 12."
+   },
+   "status": {
+    "extract": "done",
+    "shaders": "done",
+    "recomp": "wip",
+    "boot": "todo",
+    "play": "todo",
+    "stable": "todo"
+   },
+   "highlight": {
+    "en": "Reports all 26,503 shaders translated; boot still pending",
+    "es": "Reporta los 26.503 shaders traducidos; el arranque sigue pendiente"
+   },
+   "note": {
+    "en": "Its README lists many features as complete while its own sprint list shows the kernel layer, file reader and D3D12.X replay as in progress or planning. The launcher it describes is a future plan and no release exists.",
+    "es": "Su README lista muchas funciones como completas mientras su propia lista de sprint muestra la capa de kernel, el lector de archivos y el replay de D3D12.X en progreso o planificación. El launcher que describe es un plan a futuro y no existe ningún release."
+   },
+   "metrics": [
+    {
+     "label": {
+      "en": "Shaders translated (self-reported)",
+      "es": "Shaders traducidos (autorreportado)"
+     },
+     "done": 26503,
+     "total": 26503
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README progress table: shaders 26,503 of 26,503 (self-reported), boot \"in progress\", playable \"pending\", real boot \"pending\".",
+      "es": "Tabla de progreso del README: shaders 26.503 de 26.503 (autorreportado), arranque \"en progreso\", jugable \"pendiente\", arranque real \"pendiente\"."
+     },
+     "url": "https://github.com/Hylanderry/DedSec"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README sprint table: kernel shim (header created), file reader (planning) and D3D12.X replay (planning) are not done.",
+      "es": "Tabla de sprint del README: el shim de kernel (header creado), el lector de archivos (planificación) y el replay de D3D12.X (planificación) no están hechos."
+     },
+     "url": "https://github.com/Hylanderry/DedSec"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "GitHub releases: none published at the time of checking.",
+      "es": "Releases de GitHub: ninguno publicado al momento de revisar."
+     },
+     "url": "https://github.com/Hylanderry/DedSec/releases"
+    }
+   ],
+   "checked": {
+    "date": "2026-11-23",
+    "against": {
+     "en": "README + releases page",
+     "es": "README + página de releases"
+    }
+   },
+   "discord": "https://discord.gg/H3XmbVa77Y",
+   "started": "2026-11-22"
+  },
+  {
+   "name": "Xbox2Windows",
+   "author": "R0Y00",
+   "url": "https://github.com/R0Y00/Xbox2Windows",
+   "github": "R0Y00/Xbox2Windows",
+   "approach": {
+    "en": "Static-recompilation research: translates selected x64 code to C++ and selected RDNA shaders to DXIL, proven with source-built tests.",
+    "es": "Investigación de recompilación estática: traduce código x64 seleccionado a C++ y shaders RDNA seleccionados a DXIL, con pruebas compiladas desde fuente."
+   },
+   "status": {
+    "extract": "unknown",
+    "shaders": "wip",
+    "recomp": "wip",
+    "boot": "todo",
+    "play": "todo",
+    "stable": "todo"
+   },
+   "highlight": {
+    "en": "Research stage: 851 of 12,101 pixel shaders verified",
+    "es": "Etapa de investigación: 851 de 12.101 pixel shaders verificados"
+   },
+   "note": {
+    "en": "Its README says execution of the title's CPU code, full-game startup and frame rate remain unverified.",
+    "es": "Su README dice que la ejecución del código de CPU del título, el arranque del juego completo y la tasa de cuadros siguen sin verificar."
+   },
+   "metrics": [
+    {
+     "label": {
+      "en": "Pixel shader records verified",
+      "es": "Registros de pixel shader verificados"
+     },
+     "done": 851,
+     "total": 12101
+    },
+    {
+     "label": {
+      "en": "Compute shader records run",
+      "es": "Registros de compute shader ejecutados"
+     },
+     "done": 12,
+     "total": 2689
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README current status: source-built programs run from PE entry to exit; execution of the title's CPU code, full-game startup and frame rate remain unverified.",
+      "es": "Estado actual del README: programas compilados desde fuente corren desde la entrada PE hasta la salida; la ejecución del código de CPU del título, el arranque del juego completo y la tasa de cuadros siguen sin verificar."
+     },
+     "url": "https://github.com/R0Y00/Xbox2Windows#current-results-and-open-work"
+    },
+    {
+     "kind": "readme",
+     "text": {
+      "en": "README results: 851 of 12,101 pixel shader records compiled, built pipelines and matched controlled output; 12 of 2,689 compute records ran under the tested bindings.",
+      "es": "Resultados del README: 851 de 12.101 registros de pixel shader compilaron, crearon pipelines y coincidieron con la salida controlada; 12 de 2.689 registros de compute corrieron con los bindings probados."
+     },
+     "url": "https://github.com/R0Y00/Xbox2Windows#current-results-and-open-work"
+    }
+   ],
+   "checked": {
+    "date": "2026-11-23",
+    "against": {
+     "en": "README",
+     "es": "README"
+    }
+   },
+   "discord": "https://discord.gg/DMcmNtpd6R",
+   "started": "2026-11-20"
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-11-19",
+   "kind": "estimate",
+   "title": {
+    "en": "GTA VI launches on PS5 and Xbox Series X|S. Sensor Tower estimates about $1.84B in sales by release day.",
+    "es": "GTA VI sale en PS5 y Xbox Series X|S. Sensor Tower estima unos 1.840 millones de dólares en ventas al día de lanzamiento."
+   },
+   "sources": [
+    {
+     "label": "Fox 5",
+     "url": "https://www.fox5ny.com/news/gta-vi-pulls-estimated-1-84-billion-release-day-more-than-double-gta-vs-launch-record"
+    },
+    {
+     "label": "PC Gamer",
+     "url": "https://www.pcgamer.com/games/action/grand-theft-auto-6-is-delayed-to-november-these-extra-months-will-allow-us-to-finish-the-game-with-the-level-of-polish-you-have-come-to-expect-and-deserve"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "kind": "claimed",
+   "title": {
+    "en": "Cyberleek posts what it says is a near-complete Xbox build of about 209 GB, without the executable.",
+    "es": "Cyberleek publica lo que dice es un build casi completo de Xbox de unos 209 GB, sin el ejecutable."
+   },
+   "sources": [
+    {
+     "label": "PC Gamer",
+     "url": "https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/"
+    },
+    {
+     "label": "VideoCardz",
+     "url": "https://videocardz.com/newz/gta-vi-xbox-build-allegedly-leaked-by-cyberleek"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "kind": "claimed",
+   "title": {
+    "en": "The group ties the missing executable to a market-cap target for its own cryptocurrency token. Authenticity of the archive is not independently confirmed; VX Underground reportedly believes it is real.",
+    "es": "El grupo condiciona el ejecutable a una meta de capitalización de su propio token cripto. La autenticidad del archivo no está confirmada de forma independiente; VX Underground cree, según reportes, que es real."
+   },
+   "sources": [
+    {
+     "label": "VideoCardz",
+     "url": "https://videocardz.com/newz/gta-vi-xbox-build-allegedly-leaked-by-cyberleek"
+    },
+    {
+     "label": "TechRadar",
+     "url": "https://www.techradar.com/gaming/final-piece-of-claimed-gta-6-leak-set-to-arrive-today-and-theres-hope-it-could-mean-rockstar-launches-the-pc-port-sooner"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "kind": "reported",
+   "title": {
+    "en": "The executable (Xbox Series X|S version 1.0.2.1) is reported released, ahead of schedule. It does not run directly on Windows and was reportedly passed to emulator and recompilation developers.",
+    "es": "El ejecutable (versión 1.0.2.1 de Xbox Series X|S) se reporta publicado, antes de lo previsto. No corre directo en Windows y habría pasado a desarrolladores de emuladores y recompilación."
+   },
+   "sources": [
+    {
+     "label": "LevelUp",
+     "url": "https://www.levelup.com/en/news/cyberleek-leaks-gta-6s-executable-file-and-modders-are-already-working-on-a-playable-pc-version/"
+    },
+    {
+     "label": "GameGPU",
+     "url": "https://en.gamegpu.com/news/igry/cyberleek-opublikoval-ispolnyaemyj-fajl-gta-6-versii-1-0-2-1-dlya-xbox-na-tri-chasa-ranshe-sroka"
+    },
+    {
+     "label": "Notebookcheck",
+     "url": "https://www.notebookcheck.net/Cyberleek-releases-GTA-6-Xbox-build-making-playable-PC-port-more-realistic.1454770.0.html"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "kind": "reported",
+   "title": {
+    "en": "Three GitHub projects (Leonida, XCL, Xbox2Windows) are reported as working on a PC port. VIctory appears the same day and reports reaching the game world.",
+    "es": "Tres proyectos de GitHub (Leonida, XCL, Xbox2Windows) se reportan trabajando en un port a PC. VIctory aparece el mismo día y reporta llegar al mundo del juego."
+   },
+   "sources": [
+    {
+     "label": "Notebookcheck",
+     "url": "https://www.notebookcheck.net/Can-Cyberleek-s-leaked-GTA-6-Xbox-build-become-a-PC-port-Three-GitHub-projects-are-trying-without-the-executable.1456848.0.html"
+    },
+    {
+     "label": "GSMGoTech",
+     "url": "https://www.gsmgotech.com/2026/11/gta-6-pc-port-three-github-projects.html"
+    },
+    {
+     "label": "VIctory (README)",
+     "url": "https://github.com/Marvisak/VIctory"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-22",
+   "kind": "reported",
+   "title": {
+    "en": "More projects appear on GitHub, including PercyScarlett (reports a GTA VI frame loop with black frames) and DedSec. Reading each README shows no project plays the game.",
+    "es": "Aparecen más proyectos en GitHub, entre ellos PercyScarlett (reporta un bucle de frames de GTA VI con imágenes negras) y DedSec. Al leer cada README se ve que ningún proyecto juega el juego."
+   },
+   "sources": [
+    {
+     "label": "PercyScarlett (README)",
+     "url": "https://github.com/rpatty-dev/PercyScarlett"
+    },
+    {
+     "label": "DedSec (README)",
+     "url": "https://github.com/Hylanderry/DedSec"
+    }
+   ]
+  },
+  {
+   "date": "2026",
+   "kind": "statement",
+   "title": {
+    "en": "Take-Two says any PC or disc news will come from Rockstar, and that its approach is to reach platforms with a meaningful audience over time. No PC date announced. (Exact date of the remarks not given in the sources.)",
+    "es": "Take-Two dice que cualquier novedad de PC o disco vendrá de Rockstar y que su enfoque es llegar con el tiempo a plataformas con audiencia relevante. Sin fecha de PC. (Las fuentes no dan la fecha exacta de estas declaraciones.)"
+   },
+   "sources": [
+    {
+     "label": "TweakTown",
+     "url": "https://www.tweaktown.com/news/114580/grand-theft-auto-6-pc-and-physical-disc-news-will-come-from-rockstar-confirms-take-two/index.html"
+    },
+    {
+     "label": "Insider Gaming",
+     "url": "https://insider-gaming.com/gta-6-disc-and-pc-version-update-come-rockstar-take-two/"
+    }
+   ]
+  },
+  {
+   "date": "2026",
+   "kind": "statement",
+   "title": {
+    "en": "Take-Two says it is strengthening its technical and legal defences against unofficial and AI-built PC ports. (Exact date not given in the sources.)",
+    "es": "Take-Two dice que refuerza sus defensas técnicas y legales contra ports de PC no oficiales y hechos con IA. (Las fuentes no dan la fecha exacta.)"
+   },
+   "sources": [
+    {
+     "label": "Gagadget",
+     "url": "https://gagadget.com/en/733599-take-two-says-it-is-tightening-defences-against-ai-built-gta-6-pc-ports/"
+    },
+    {
+     "label": "IBTimes UK",
+     "url": "https://www.ibtimes.co.uk/take-two-anti-piracy-ai-gta-6-pc-ports-1831461"
+    }
+   ]
+  }
+ ],
+ "claims": [
+  {
+   "status": "pending",
+   "check": "2026-11-30",
+   "claim": {
+    "en": "The community will have it running on PC within about a week.",
+    "es": "La comunidad lo tendrá corriendo en PC en cerca de una semana."
+   },
+   "reality": {
+    "en": "As of 2026-11-23 no project is playable. VIctory and PercyScarlett report black-screen stages, and XCL reportedly reaches the intro, per a Discord report we could not verify. The week is still running: verdict due about 2026-11-30.",
+    "es": "Al 2026-11-23 ningún proyecto es jugable. VIctory y PercyScarlett reportan etapas de pantalla negra, y XCL llega según se reporta a la intro, por un reporte de Discord que no pudimos verificar. La semana sigue corriendo: veredicto cerca del 2026-11-30."
+   },
+   "sources": [
+    {
+     "label": "TweakTown",
+     "url": "https://www.tweaktown.com/news/114815/cyberleek-claims-modders-could-get-gta-6-running-on-pc-within-a-week-after-reported-xbox-build-leak/index.html"
+    },
+    {
+     "label": "VIctory (README)",
+     "url": "https://github.com/Marvisak/VIctory"
+    },
+    {
+     "label": "PercyScarlett (README)",
+     "url": "https://github.com/rpatty-dev/PercyScarlett"
+    }
+   ]
+  },
+  {
+   "status": "unproven",
+   "claim": {
+    "en": "It will run well above 30 fps.",
+    "es": "Correrá muy por encima de 30 fps."
+   },
+   "reality": {
+    "en": "Unproven. VIctory reports menus at 30 fps (the title's own cap) and no working world rendering yet.",
+    "es": "Sin probar. VIctory reporta menús a 30 fps (el tope del propio título) y aún sin renderizado funcional del mundo."
+   },
+   "sources": [
+    {
+     "label": "TweakTown",
+     "url": "https://www.tweaktown.com/news/114815/cyberleek-claims-modders-could-get-gta-6-running-on-pc-within-a-week-after-reported-xbox-build-leak/index.html"
+    },
+    {
+     "label": "VIctory (README)",
+     "url": "https://github.com/Marvisak/VIctory"
+    }
+   ]
+  },
+  {
+   "status": "unconfirmed",
+   "claim": {
+    "en": "The leak is a near-complete Xbox build.",
+    "es": "La filtración es un build de Xbox casi completo."
+   },
+   "reality": {
+    "en": "Not independently confirmed. VX Underground reportedly believes it is genuine.",
+    "es": "No confirmado de forma independiente. VX Underground cree, según reportes, que es genuino."
+   },
+   "sources": [
+    {
+     "label": "VideoCardz",
+     "url": "https://videocardz.com/newz/gta-vi-xbox-build-allegedly-leaked-by-cyberleek"
+    },
+    {
+     "label": "TechRadar",
+     "url": "https://www.techradar.com/gaming/final-piece-of-claimed-gta-6-leak-set-to-arrive-today-and-theres-hope-it-could-mean-rockstar-launches-the-pc-port-sooner"
+    }
+   ]
+  },
+  {
+   "status": "true",
+   "claim": {
+    "en": "The executable will be released on November 23 regardless.",
+    "es": "El ejecutable se publicará el 23 de noviembre pase lo que pase."
+   },
+   "reality": {
+    "en": "Reported as released, a few hours early.",
+    "es": "Reportado como publicado, unas horas antes."
+   },
+   "sources": [
+    {
+     "label": "LevelUp",
+     "url": "https://www.levelup.com/en/news/cyberleek-leaks-gta-6s-executable-file-and-modders-are-already-working-on-a-playable-pc-version/"
+    },
+    {
+     "label": "GameGPU",
+     "url": "https://en.gamegpu.com/news/igry/cyberleek-opublikoval-ispolnyaemyj-fajl-gta-6-versii-1-0-2-1-dlya-xbox-na-tri-chasa-ranshe-sroka"
+    },
+    {
+     "label": "Notebookcheck",
+     "url": "https://www.notebookcheck.net/Cyberleek-releases-GTA-6-Xbox-build-making-playable-PC-port-more-realistic.1454770.0.html"
+    }
+   ]
+  }
+ ],
+ "estimate": {
+  "official": {
+   "consoleLaunch": "2026-11-19",
+   "precedents": [
+    {
+     "name": "Red Dead Redemption 2",
+     "months": 13
+    },
+    {
+     "name": "Grand Theft Auto V",
+     "months": 19
+    }
+   ],
+   "window": {
+    "start": "2027-12",
+    "end": "2028-06"
+   },
+   "rumor": {
+    "start": "2027-01",
+    "end": "2027-03",
+    "label": {
+     "en": "Early 2027 rumor (unconfirmed, attributed to GamesBeat)",
+     "es": "Rumor de inicios de 2027 (sin confirmar, atribuido a GamesBeat)"
+    }
+   }
+  },
+  "community": [
+   {
+    "id": "opt",
+    "start": null,
+    "end": null,
+    "label": {
+     "en": "Community build, fast pace",
+     "es": "Build comunitario, ritmo rápido"
+    },
+    "text": {
+     "en": "The leaders keep a quarter of their early pace on the remaining work.",
+     "es": "Los líderes mantienen un cuarto de su ritmo inicial en el trabajo que falta."
+    }
+   },
+   {
+    "id": "base",
+    "start": null,
+    "end": null,
+    "label": {
+     "en": "Community build, slower pace",
+     "es": "Build comunitario, ritmo más lento"
+    },
+    "text": {
+     "en": "The harder remaining work runs at one twentieth of the early pace, down to one hundredth.",
+     "es": "El trabajo restante, más difícil, va a un veinteavo del ritmo inicial, hasta un centésimo."
+    }
+   },
+   {
+    "id": "never",
+    "start": null,
+    "end": null,
+    "label": {
+     "en": "Community build, may never ship publicly",
+     "es": "Build comunitario, puede que nunca salga público"
+    },
+    "text": {
+     "en": "Takedowns, legal pressure or a stalled project could stop it.",
+     "es": "Takedowns, presión legal o un proyecto estancado podrían frenarlo."
+    }
+   }
+  ],
+  "pros": [
+   {
+    "en": "The executable is reportedly public and six projects work in parallel.",
+    "es": "El ejecutable estaría público y hay seis proyectos en paralelo."
+   },
+   {
+    "en": "XCL and PercyScarlett already run other retail Xbox games, so the approach works in general.",
+    "es": "XCL y PercyScarlett ya corren otros juegos comerciales de Xbox, así que el enfoque funciona en general."
+   },
+   {
+    "en": "Three projects report reaching black-screen stages of GTA VI itself.",
+    "es": "Tres proyectos reportan llegar a etapas de pantalla negra del propio GTA VI."
+   },
+   {
+    "en": "About 87% of the world's shaders are covered by count in VIctory (self-reported: 20,451 of 23,391).",
+    "es": "Cerca del 87% de los shaders del mundo está cubierto por cantidad en VIctory (autorreportado: 20.451 de 23.391)."
+   }
+  ],
+  "cons": [
+   {
+    "en": "Rendering the world currently fails and can hang the GPU or reset the display driver.",
+    "es": "Renderizar el mundo hoy falla y puede colgar la GPU o reiniciar el driver de video."
+   },
+   {
+    "en": "VIctory covers only about 65% of compute shaders and still lacks the ray-tracing builder's shaders.",
+    "es": "VIctory cubre solo cerca del 65% de los compute shaders y aún le faltan los del constructor de ray tracing."
+   },
+   {
+    "en": "VIctory notes that frames take seconds in the world and some GPU features are missing.",
+    "es": "VIctory indica que los frames tardan segundos en el mundo y faltan algunas funciones de GPU."
+   },
+   {
+    "en": "Take-Two says it is strengthening its defences against unofficial ports.",
+    "es": "Take-Two dice que refuerza sus defensas contra ports no oficiales."
+   }
+  ],
+  "model": {
+   "target": "play",
+   "minAgeDays": 3,
+   "decay": {
+    "fast": 0.25,
+    "realistic": 0.05,
+    "slow": 0.01
+   }
+  }
+ },
+ "weights": {
+  "extract": 0.5,
+  "shaders": 1,
+  "recomp": 1.5,
+  "boot": 2,
+  "play": 3,
+  "stable": 2
+ }
+}
