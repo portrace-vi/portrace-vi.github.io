@@ -673,5 +673,13 @@ for name in ("en", "es", "assets"):
     shutil.copytree(ROOT / name, PUB / name)
 for name in ("index.html", "404.html", "robots.txt", "sitemap.xml", ".nojekyll"):
     shutil.copy(ROOT / name, PUB / name)
+# archivos estáticos (p. ej. verificación de Search Console): a la raíz; los de Google también en /en/ y /es/
+_static = ROOT / "src" / "static"
+if _static.exists():
+    for f in sorted(_static.iterdir()):
+        if f.is_file():
+            shutil.copy(f, PUB / f.name)
+            if f.name.startswith("google"):
+                for lg in ("en", "es"): shutil.copy(f, PUB / lg / f.name)
 
 print(f"OK -> {ROOT} | base={BASE} | páginas: {2 + 2 * (len(GPUS) + 2)} + sitemap/robots")
