@@ -13,6 +13,7 @@ assets/cpus.js
 assets/strings.js
 src/snapshot.json
 changes.md
+changes.title
 __pycache__/
 *.pyc
 

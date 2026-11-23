@@ -43,7 +43,8 @@ jobs:
             git add src/readme-hashes.json
             git commit -m "watch: changes detected" || true
             git push || true
-            gh issue create --title "Tracked repos changed ($(date -u +%F))" --body-file changes.md
+            TITLE="$(cat changes.title 2>/dev/null || echo "Tracked repos changed ($(date -u +%F))")"
+            gh issue create --title "$TITLE" --body-file changes.md
           fi
 
       - name: Build

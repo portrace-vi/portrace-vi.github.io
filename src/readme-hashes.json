@@ -3,19 +3,39 @@
   "baseline": true,
   "changed_at": "2026-11-23T23:04:06Z",
   "releases": [],
-  "sha": "2a584d30973b09fa113642748ecfd8477ab82cb3749dbb84f00e13c4a1a361d2"
+  "sha": "2a584d30973b09fa113642748ecfd8477ab82cb3749dbb84f00e13c4a1a361d2",
+  "signals": [
+   "Performance 🔄 Em teste 30+ FPS FPS médio ÷ 30",
+   "Boot do jogo 🔴 Em progresso ✅ [P0] kernelx (#3) + VFS/RPF9 (#4) em andamento",
+   "In-game jogável ❌ Pendente ✅ Depende de boot + render (#5)",
+   "🎯 Sprint Ativo: Boot até o Menu Principal",
+   "Boot Real ❌ Pendente Aguardando executável do jogo",
+   "PE Loader + TLS /GA Patch ✅ Completo Boot do exe retail com TLS slot fix",
+   "Boot / Menu Principal 🔴 Em progresso Sprint ativo — ver [BOOT_ROADMAP.md](docs/BOOT_ROADMAP.md)",
+   "1. Boot do executável real: PE loader testado contra o binário do jogo",
+   "2. Testes in-game: validar shaders traduzidos em cena real",
+   "4. Performance profiling: FPS baseline em diferentes GPUs"
+  ]
  },
  "Marvisak/VIctory": {
   "baseline": false,
   "changed_at": "2026-11-23T23:18:55Z",
   "releases": [],
-  "sha": "43aa7c1ec51a88df8d03d1d9655e1b7420698b92acd7efe474372c9de409600a"
+  "sha": "43aa7c1ec51a88df8d03d1d9655e1b7420698b92acd7efe474372c9de409600a",
+  "signals": [
+   "Not playable yet. The title boots, runs its menus at its own 30 fps and",
+   "Boot, first-boot screens (accessibility, language, settings, legal) works, 30 fps",
+   "The world (first mission's intro) reached and runs (two minutes without a GPU failure); the picture is black, 1.5-3 s per frame",
+   "VICTORY_D3D12_DRED=1 on a GPU failure, the allocation hit and the commands in flight",
+   "Every build appends crashes and host GPU failures to crashes.log in the"
+  ]
  },
  "ProjectLeonida/Leonida": {
   "baseline": false,
   "changed_at": "2026-11-23T23:31:13Z",
   "releases": [],
-  "sha": "fa18e824f8b9c66a5d227f1101db36118f22478eb060c146bf68130aaef09da5"
+  "sha": "fa18e824f8b9c66a5d227f1101db36118f22478eb060c146bf68130aaef09da5",
+  "unavailable": 404
  },
  "R0Y00/Xbox2Windows": {
   "baseline": false,
@@ -23,13 +43,26 @@
   "releases": [
    "gpu-check-v0.1.0"
   ],
-  "sha": "943805f9b75adc561e0f0837a24bbca89dbd3f93c103cd6785eda51af42b8cc3"
+  "sha": "943805f9b75adc561e0f0837a24bbca89dbd3f93c103cd6785eda51af42b8cc3",
+  "signals": [
+   "Current status. Source-built programs run from PE entry to exit, and selected shader fixtures produce checked D3D12 output. Execution of the title's CPU code, full-game startup and frame rate remain unverified.",
+   "x64 programs from PE entry A two-record archive reader runs with blast 1.3 decompression under Windows, the PE mapper and the recompiled build. The three agree on output bytes, callback order, completed records, allocations, releases and ex",
+   "Raster draw from PE entry The shim-startup EXE reuses one D3D12 texture across three 64×64 draws, including a partial compute update and a pipeline change. Native, mapped and recompiled runs match all 16,384 RGBA bytes per frame. A skipped ",
+   "Two shadow submissions from PE entry A source-built EXE creates its device through the Xbox shim, chooses each shadow-map slot, and submits and waits for each frame through the fixture provider. Native, mapped and AOT runs compare both colo"
+  ]
  },
  "ivall/xcl": {
   "baseline": true,
   "changed_at": "2026-11-23T23:04:06Z",
   "releases": [],
-  "sha": "4bc16f0c97051a6a8796b7b8cb0010f86cdf44e93a515443247aaf5b21e55e8f"
+  "sha": "4bc16f0c97051a6a8796b7b8cb0010f86cdf44e93a515443247aaf5b21e55e8f",
+  "signals": [
+   "playable, Fortnite and XDefiant work as far as each game goes without its online services;",
+   "Minecraft Preview Microsoft.MinecraftBeta 1.18.3064.0 ✅ fully playable –",
+   "Unicorn Overlord SEGAofAmericaInc.Pa253b0c1Y 1.0.0.6 ✅ fully playable –",
+   "A newer retail game – 🚧 starts in ~4 s, runs at a steady 30 fps without a crash, shows its menus and goes on past the first one to its settings; fits a 32 GB machine (~15 GB committed in the menus) gameplay not reached yet; its minimap mesh",
+   "A coarse sample can miss detail; a non-dark sample does not establish correct rendering or gameplay."
+  ]
  },
  "rpatty-dev/PercyScarlett": {
   "baseline": true,
@@ -41,6 +74,15 @@
    "v0.3.10",
    "v0.3.9"
   ],
-  "sha": "c59f7bfa194bf9aa1d7d3bb3cc3bc6cfc7379536adf00c84236d96827915d8ce"
+  "sha": "c59f7bfa194bf9aa1d7d3bb3cc3bc6cfc7379536adf00c84236d96827915d8ce",
+  "signals": [
+   "v0.9: a retail Scarlett title reaches the main menu and plays in-world, and the pipeline is ready for TheBig6 😉.",
+   "![Minecraft Scarlett build in-world on PercyScarlett](docs/proof/minecraft_ingame_percy.png)",
+   "Main menu Loading",
+   "![Main menu](docs/proof/minecraft_xsx_main_menu.png) ![Loading](docs/proof/minecraft_xsx_loading_render.png)",
+   "Main menu renders at several hundred FPS. In-world is ~45-50 FPS on an RTX 2060 SUPER before the v0.9 VRAM mirror (verification of the mirror is in progress).",
+   "Retail Xbox Series X\\ S game Minecraft (Scarlett build, unmodified exe): boots, main menu, creates/saves/reloads a world, in-game screenshots above",
+   "GTA VI Boots to a running frame loop and first PresentX (black frames); stops at a GPU hang (887a0006) about 5 s in, plus an intermittent early device removal. Shader stand-ins, console bottom-of-pipe writes and memory waits are in. Help we"
+  ]
  }
 }

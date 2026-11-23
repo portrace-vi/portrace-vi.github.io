@@ -12,9 +12,13 @@ Token: usa GITHUB_TOKEN / GH_TOKEN si existe, o el de `gh auth token` si estás 
 """
 import datetime, hashlib, json, os, pathlib, re, subprocess, sys, urllib.error, urllib.request
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from signals import signals, positive_playable
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = json.load(open(ROOT / "src/data.json", encoding="utf-8"))
 HASHES_F, SNAP_F, CHANGES_F = ROOT / "src/readme-hashes.json", ROOT / "src/snapshot.json", ROOT / "changes.md"
+TITLE_F = ROOT / "changes.title"
 NOW = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 def token():
@@ -38,7 +42,7 @@ def api(path, raw=False):
         return 0, b"", {}
 
 old = json.load(open(HASHES_F, encoding="utf-8")) if HASHES_F.exists() else {}
-new_hashes, snap, changes = {}, {}, []
+new_hashes, snap, changes, priority = {}, {}, [], []
 
 for p in DATA["projects"]:
     slug = p.get("github")
@@ -49,7 +53,7 @@ for p in DATA["projects"]:
         snap[slug] = {"unavailable": code, "fetched_at": NOW}
         new_hashes[slug] = prev or {}
         if not (prev or {}).get("unavailable"):
-            changes.append(f"- **{p['name']}** (`{slug}`): the repository is now unavailable (HTTP {code}). Possible takedown. Check manually and update the tracker.")
+            changes.append(f"- **{p['name']}** (`{slug}`): the repository is now unavailable (HTTP {code}). Cause unknown: move, deletion, privacy change or takedown. Check manually and update the tracker.")
         new_hashes[slug] = {**(prev or {}), "unavailable": code}
         continue
     if code != 200:               # límite de API, red caída, etc.: no tocamos nada
@@ -57,8 +61,12 @@ for p in DATA["projects"]:
         if prev: new_hashes[slug] = prev
         continue
     repo = json.loads(body)
+    if prev and prev.get("unavailable"):   # volvió a estar disponible
+        priority.append(p["name"])
+        changes.append(f"- **{p['name']}** (`{slug}`): 🚨 the repository is available again: https://github.com/{slug}")
     _, rb, _ = api(f"/repos/{slug}/readme", raw=True)
     sha = hashlib.sha256(rb).hexdigest() if rb else (prev or {}).get("sha")
+    sig = signals(rb.decode("utf-8", "replace")) if rb else (prev or {}).get("signals")
     cc, cb, ch = api(f"/repos/{slug}/commits?per_page=1")
     commits, last = None, None
     if cc == 200:
@@ -77,12 +85,18 @@ for p in DATA["projects"]:
     else:
         if sha and prev.get("sha") and sha != prev["sha"]:
             changed_at, baseline = NOW, False
+            detail, old_sig = "", prev.get("signals")
+            if old_sig is not None and sig is not None:     # qué líneas de estado cambiaron
+                added = [l for l in sig if l not in old_sig]; removed = [l for l in old_sig if l not in sig]
+                detail = "".join(f"\n  - ➕ {l}" for l in added[:6]) + "".join(f"\n  - ➖ {l}" for l in removed[:6])
+                if any(positive_playable(l) for l in added): priority.append(p["name"])
             changes.append(f"- **{p['name']}** (`{slug}`): README changed. Review the diff: https://github.com/{slug}/commits/{repo.get('default_branch','main')}/README.md . "
-                           f"The tracker status was last checked on {p['checked']['date']}.")
+                           f"The tracker status was last checked on {p['checked']['date']}.{detail}")
         for tag in releases:
             if tag not in prev.get("releases", []):
-                changes.append(f"- **{p['name']}** (`{slug}`): new release `{tag}` https://github.com/{slug}/releases/tag/{tag}")
-    new_hashes[slug] = {"sha": sha, "changed_at": changed_at, "baseline": baseline, "releases": releases}
+                priority.append(p["name"])
+                changes.append(f"- **{p['name']}** (`{slug}`): 🚨 new release `{tag}` https://github.com/{slug}/releases/tag/{tag}")
+    new_hashes[slug] = {"sha": sha, "changed_at": changed_at, "baseline": baseline, "releases": releases, "signals": sig}
     snap[slug] = {"stars": repo["stargazers_count"], "pushed_at": repo["pushed_at"], "open_issues": repo["open_issues_count"],
                   "archived": repo["archived"], "commits": commits, "last_commit": last, "releases": releases[:3],
                   "readme_changed_at": changed_at, "readme_baseline": baseline, "fetched_at": NOW}
@@ -90,6 +104,12 @@ for p in DATA["projects"]:
 SNAP_F.write_text(json.dumps({"fetched_at": NOW, "repos": snap}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 if json.dumps(new_hashes, sort_keys=True) != json.dumps(old, sort_keys=True):
     HASHES_F.write_text(json.dumps(new_hashes, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+if priority:
+    names = ", ".join(sorted(set(priority)))
+    changes.insert(0, f"🚨 **Priority: possible playable build or new release in: {names}.** Check it first and update `src/data.json` if it is real.\n")
+    TITLE_F.write_text(f"🚨 Possible playable build or new release: {names}", encoding="utf-8")
+elif changes:
+    TITLE_F.write_text(f"Tracked repos changed ({NOW[:10]})", encoding="utf-8")
 CHANGES_F.write_text("\n".join(changes) + ("\n" if changes else ""), encoding="utf-8")
 print(f"[watch] {len(snap)} repos | cambios: {len(changes)}")
 for c in changes: print(c)

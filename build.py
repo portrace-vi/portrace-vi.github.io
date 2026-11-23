@@ -2,7 +2,7 @@
 """Genera /en/index.html, /es/index.html, /index.html y assets/strings.js desde src/template.html.
 Uso: python3 build.py  [--base https://tudominio.com]
 """
-import json, sys, pathlib
+import json, sys, pathlib, os
 
 ROOT = pathlib.Path(__file__).parent
 BASE = "https://example.com"
@@ -74,7 +74,7 @@ J = {
  "meta": ("", ""),
  "commits": ("Commits", "Commits"), "commitsWord": ("commits", "commits"), "lastCommit": ("Last commit", "Último commit"),
  "readmeChanged": ("README change detected", "Cambio de README detectado"), "watcher": ("Watcher last ran", "El vigilante corrió por última vez"),
- "unavailable": ("Repository unavailable. Possible takedown.", "Repositorio no disponible. Posible takedown."), "issues": ("Issues", "Issues"),
+ "unavailable": ("GitHub repository unavailable. Cause not confirmed.", "Repositorio de GitHub no disponible. Causa sin confirmar."), "issues": ("Issues", "Issues"),
  "score": ("Progress score", "Puntaje de avance"), "evidence": ("Evidence", "Evidencia"), "checked": ("Checked", "Verificado"),
  "pushed": ("last push", "último push"), "agoNow": ("just now", "justo ahora"), "agoMin": ("%n min ago", "hace %n min"),
  "agoHour": ("%n h ago", "hace %n h"), "agoDay": ("%n d ago", "hace %n d"),
@@ -594,6 +594,19 @@ def marquee(lang):
     return f'<div class="marquee" aria-hidden="true"><div class="m-track">{one}{one}</div></div>'
 
 
+
+def alerts_line(lang):
+    repo = os.environ.get("GITHUB_REPOSITORY", "portrace-vi/portrace-vi.github.io")
+    gh = f"https://github.com/{repo}"
+    if lang == "en":
+        txt = "Alerts: our watcher opens an issue when a project's README changes, a release appears or a repository disappears."
+        a, b = "Follow on GitHub (Watch → Custom → Issues)", "Feed"
+    else:
+        txt = "Alertas: nuestro vigilante abre un issue cuando cambia el README de un proyecto, aparece un release o desaparece un repositorio."
+        a, b = "Seguir en GitHub (Watch → Custom → Issues)", "Feed"
+    return (f'<p class="fine alerts">{esc(txt)} <a href="{gh}/issues" rel="noopener" target="_blank">{esc(a)} ↗</a> · '
+            f'<a href="{gh}/commits/main.atom" rel="noopener" target="_blank">{b} ↗</a></p>')
+
 # ======================================================================
 #  Generación
 # ======================================================================
@@ -615,7 +628,7 @@ for lang in LANGS2:
         faq_ld(lang)]}
     html = (html.replace("{{seo_head}}", seo_head(lang, S["meta_title"][i], S["meta_desc"][i], ""))
                 .replace("{{fonts}}", FONTS).replace("{{jsonld}}", jsonld(ld)).replace("{{req_table}}", req_table(lang))
-                .replace("{{eta_block}}", eta_block(lang)).replace("{{marquee}}", marquee(lang)).replace("{{when_section}}", when_section(lang)).replace("{{leak_section}}", leak_section(lang)))
+                .replace("{{eta_block}}", eta_block(lang)).replace("{{alerts_line}}", alerts_line(lang)).replace("{{marquee}}", marquee(lang)).replace("{{when_section}}", when_section(lang)).replace("{{leak_section}}", leak_section(lang)))
     assert "{{" not in html, "placeholder sin resolver en " + lang
     (ROOT / lang).mkdir(exist_ok=True)
     (ROOT / lang / "index.html").write_text(html, encoding="utf-8")

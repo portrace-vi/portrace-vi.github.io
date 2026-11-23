@@ -279,8 +279,8 @@
     "es": "Los 26.503 shaders traducidos y validados, el juego aún no arranca"
    },
    "note": {
-    "en": "Its own README: early, the game does not boot yet; the loader is untested against the real executable.",
-    "es": "Su propio README: etapa temprana, el juego aún no arranca; el cargador no está probado contra el ejecutable real."
+    "en": "Its GitHub repository returned 404 on 2026-11-23. The cause is not confirmed (move, deletion, privacy change or takedown). Its README listed a self-hosted mirror that did not respond when we checked. The status below is the last known one.",
+    "es": "Su repositorio de GitHub dio 404 el 2026-11-23. La causa no está confirmada (mudanza, borrado, cambio a privado o takedown). Su README listaba un espejo propio que no respondió cuando lo revisamos. El estado de abajo es el último conocido."
    },
    "metrics": [
     {
@@ -593,6 +593,20 @@
     {
      "label": "DedSec (README)",
      "url": "https://github.com/Hylanderry/DedSec"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "kind": "reported",
+   "title": {
+    "en": "Leonida's GitHub repository (about 34,000 stars) starts returning 404 under both its old and new names. The cause is not confirmed: we found no DMCA notice and no press report. Its README listed a self-hosted mirror that did not respond when checked.",
+    "es": "El repositorio de GitHub de Leonida (unas 34.000 estrellas) empieza a dar 404 con su nombre viejo y el nuevo. La causa no está confirmada: no encontramos aviso DMCA ni nota de prensa. Su README listaba un espejo propio que no respondió al revisarlo."
+   },
+   "sources": [
+    {
+     "label": "Leonida repo (404)",
+     "url": "https://github.com/ProjectLeonida/Leonida"
     }
    ]
   },
