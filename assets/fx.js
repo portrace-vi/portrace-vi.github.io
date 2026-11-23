@@ -6,6 +6,11 @@
   var fine = mq("(hover: hover) and (pointer: fine)");
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
 
+  /* recordar el idioma que elige la persona con el botón EN/ES (la raíz del sitio lo usa) */
+  $$(".lang a[hreflang]").forEach(function (a) {
+    a.addEventListener("click", function () { try { localStorage.setItem("lang", a.getAttribute("hreflang")); } catch (e) {} });
+  });
+
   /* barra de progreso + cabecera que se esconde al bajar */
   var bar = document.createElement("div"); bar.className = "progress"; document.body.appendChild(bar);
   var header = document.querySelector("header.top"), lastY = 0, ticking = false;

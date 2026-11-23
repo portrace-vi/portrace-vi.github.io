@@ -655,7 +655,7 @@ sm.append("</urlset>")
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="canonical" href="{BASE}/en/">
 <link rel="alternate" hreflang="en" href="{BASE}/en/"><link rel="alternate" hreflang="es" href="{BASE}/es/"><link rel="alternate" hreflang="x-default" href="{BASE}/en/">
-<script>var l=(navigator.language||'en').slice(0,2)==='es'?'es':'en';location.replace(l+'/');</script>
+<script>var l=null;try{{var s=localStorage.getItem('lang');if(s==='es'||s==='en')l=s}}catch(e){{}}if(!l){{var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en'];for(var i=0;i<L.length;i++){{var c=String(L[i]).slice(0,2).toLowerCase();if(c==='es'||c==='en'){{l=c;break}}}}}}location.replace((l||'en')+'/'+location.search+location.hash);</script>
 <noscript><meta http-equiv="refresh" content="0;url=en/"></noscript></head>
 <body style="background:#0a0a0f;color:#f4f4f7;font-family:system-ui,sans-serif;text-align:center;padding:48px">
 <p><a style="color:#ff9a5a" href="en/">English</a> · <a style="color:#ff9a5a" href="es/">Español</a></p></body></html>""", encoding="utf-8")
