@@ -10,7 +10,7 @@ import re
 SIGNAL = re.compile(
     r"playable|\bboots?\b|title screen|main menu|in-?game|gameplay|\bfps\b|"
     r"black (screen|picture|frame)|device (lost|removal)|gpu (hang|fail)|"
-    r"start-?up|frame rate|from pe entry", re.I)
+    r"start-?up|frame rate|from pe entry|\brenders?\b|per frame|\bdark\b|indirect draws", re.I)
 
 _NEGATIVE = re.compile(r"❌|\bno\b|\bnot\b|n't|\byet\b|\bnever\b|pending|todo|planned|missing|fail|unverified", re.I)
 _TOPIC = re.compile(r"playable|gameplay|story mode|in-?game", re.I)

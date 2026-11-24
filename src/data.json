@@ -52,12 +52,12 @@
     "stable": "todo"
    },
    "highlight": {
-    "en": "Boots, plays the intro, loads the world, then a black picture",
-    "es": "Arranca, reproduce la intro, carga el mundo y luego imagen negra"
+    "en": "Boots, plays the intro, loads the world; its title card renders but the scene is still dark",
+    "es": "Arranca, reproduce la intro, carga el mundo; su pantalla de título se renderiza pero la escena sigue oscura"
    },
    "note": {
-    "en": "Frames in the world are black and take 1.5-3 s each. Its README still warns that entering the world on a real GPU can hang it and reset the display driver. Tested on one machine (RX 6700 XT).",
-    "es": "Los frames del mundo salen negros y tardan 1,5-3 s cada uno. Su README sigue advirtiendo que entrar al mundo en una GPU real puede colgarla y reiniciar el driver de video. Probado en una sola máquina (RX 6700 XT)."
+    "en": "In the world only the title card renders; the scene after it is still dark and each frame takes 0.5-1.8 s. Its README still warns that entering the world on a real GPU can hang it and reset the display driver. Tested on one machine (RX 6700 XT).",
+    "es": "En el mundo solo se renderiza la pantalla de título; la escena posterior sigue oscura y cada frame tarda 0,5-1,8 s. Su README sigue advirtiendo que entrar al mundo en una GPU real puede colgarla y reiniciar el driver de video. Probado en una sola máquina (RX 6700 XT)."
    },
    "metrics": [
     {
@@ -97,8 +97,8 @@
     {
      "kind": "readme",
      "text": {
-      "en": "README: the world (first mission's intro) is reached and runs for two minutes without a GPU failure, but the picture is black and each frame takes 1.5-3 s.",
-      "es": "README: se llega al mundo (intro de la primera misión) y corre dos minutos sin fallo de GPU, pero la imagen es negra y cada frame tarda 1,5-3 s."
+      "en": "README: the world (first mission's intro) is reached and runs with indirect draws; its title card renders, the scene after it is still dark, and each frame takes 0.5-1.8 s.",
+      "es": "README: se llega al mundo (intro de la primera misión) y corre con draws indirectos; su pantalla de título se renderiza, la escena posterior sigue oscura y cada frame tarda 0,5-1,8 s."
      },
      "url": "https://github.com/Marvisak/VIctory#status-2026-11-23"
     },
@@ -114,8 +114,8 @@
    "checked": {
     "date": "2026-11-23",
     "against": {
-     "en": "README, re-read after a watcher alert",
-     "es": "README, releído tras una alerta del vigilante"
+     "en": "README, re-read after a watcher alert (twice)",
+     "es": "README, releído tras alertas del vigilante (dos veces)"
     }
    },
    "started": "2026-11-23"
@@ -656,8 +656,8 @@
     "es": "La comunidad lo tendrá corriendo en PC en cerca de una semana."
    },
    "reality": {
-    "en": "As of 2026-11-23 no project is playable. VIctory and PercyScarlett report black-screen stages, and XCL reportedly reaches the intro, per a Discord report we could not verify. The week is still running: verdict due about 2026-11-30.",
-    "es": "Al 2026-11-23 ningún proyecto es jugable. VIctory y PercyScarlett reportan etapas de pantalla negra, y XCL llega según se reporta a la intro, por un reporte de Discord que no pudimos verificar. La semana sigue corriendo: veredicto cerca del 2026-11-30."
+    "en": "As of 2026-11-23 no project is playable. VIctory renders the world's title card with the scene still dark, and PercyScarlett reports black frames, and XCL reportedly reaches the intro, per a Discord report we could not verify. The week is still running: verdict due about 2026-11-30.",
+    "es": "Al 2026-11-23 ningún proyecto es jugable. VIctory renderiza la pantalla de título del mundo con la escena aún oscura, y PercyScarlett reporta frames negros, y XCL llega según se reporta a la intro, por un reporte de Discord que no pudimos verificar. La semana sigue corriendo: veredicto cerca del 2026-11-30."
    },
    "sources": [
     {
@@ -681,8 +681,8 @@
     "es": "Correrá muy por encima de 30 fps."
    },
    "reality": {
-    "en": "Unproven. VIctory reports menus at 30 fps (the title's own cap) and no working world rendering yet.",
-    "es": "Sin probar. VIctory reporta menús a 30 fps (el tope del propio título) y aún sin renderizado funcional del mundo."
+    "en": "Unproven. VIctory reports menus at 30 fps (the title's own cap) and the world scene still renders dark.",
+    "es": "Sin probar. VIctory reporta menús a 30 fps (el tope del propio título) y la escena del mundo aún se ve oscura."
    },
    "sources": [
     {
@@ -829,8 +829,8 @@
   ],
   "cons": [
    {
-    "en": "In the world the picture is still black and each frame takes 1.5-3 s; VIctory still warns that it can hang a real GPU.",
-    "es": "En el mundo la imagen sigue negra y cada frame tarda 1,5-3 s; VIctory sigue advirtiendo que puede colgar una GPU real."
+    "en": "In the world only a title card renders; the scene after it is still dark, each frame takes 0.5-1.8 s and VIctory still warns it can hang a real GPU.",
+    "es": "En el mundo solo se renderiza una pantalla de título; la escena posterior sigue oscura, cada frame tarda 0,5-1,8 s y VIctory sigue advirtiendo que puede colgar una GPU real."
    },
    {
     "en": "VIctory covers only about 65% of compute shaders and still lacks the ray-tracing builder's shaders.",

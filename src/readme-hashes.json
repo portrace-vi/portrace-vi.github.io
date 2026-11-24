@@ -25,6 +25,10 @@
   "signals": [
    "Not playable yet. The title boots, runs its menus at its own 30 fps and",
    "Boot, first-boot screens (accessibility, language, settings, legal) works, 30 fps",
+   "The world (first mission's intro) reached and runs with indirect draws; its title card renders, the scene after it is still dark; 0.5-1.8 s per frame",
+   "VICTORY_D3D12_WARP=1, which renders on the software adapter.",
+   "Textures Console tiled layouts and detiling for the modes the title uses Render-target metadata planes",
+   "VICTORY_DUMP_TARGETS=1 with the two above, saves every render target of those frames",
    "VICTORY_D3D12_DRED=1 on a GPU failure, the allocation hit and the commands in flight",
    "Every build appends crashes and host GPU failures to crashes.log in the"
   ]
@@ -60,6 +64,8 @@
    "Minecraft Preview Microsoft.MinecraftBeta 1.18.3064.0 ✅ fully playable –",
    "Unicorn Overlord SEGAofAmericaInc.Pa253b0c1Y 1.0.0.6 ✅ fully playable –",
    "A newer retail game – 🚧 starts in ~4 s, runs at a steady 30 fps without a crash, shows its menus and goes on past the first one to its settings; fits a 32 GB machine (~15 GB committed in the menus) gameplay not reached yet; its minimap mesh",
+   "D3D12.X graphics ✅ device, resources and heaps (also placed in title memory), pipelines; the title's graphics command lists – draws, indirect draws, graphics root arguments, barriers, copies, clears – and command lists recorded by console c",
+   "null if its format cannot be decoded. Intermediate render-target dumps do not update it.",
    "A coarse sample can miss detail; a non-dark sample does not establish correct rendering or gameplay."
   ]
  },
