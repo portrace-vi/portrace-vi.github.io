@@ -19,13 +19,12 @@
  },
  "Marvisak/VIctory": {
   "baseline": false,
-  "changed_at": "2026-11-23T23:18:55Z",
+  "changed_at": "2026-11-24T00:18:54Z",
   "releases": [],
-  "sha": "43aa7c1ec51a88df8d03d1d9655e1b7420698b92acd7efe474372c9de409600a",
+  "sha": "2028a9487ced6e162dbe1cfe26d3b2d0bc9d14255ce981ddbba15baa6ac1e3bf",
   "signals": [
    "Not playable yet. The title boots, runs its menus at its own 30 fps and",
    "Boot, first-boot screens (accessibility, language, settings, legal) works, 30 fps",
-   "The world (first mission's intro) reached and runs (two minutes without a GPU failure); the picture is black, 1.5-3 s per frame",
    "VICTORY_D3D12_DRED=1 on a GPU failure, the allocation hit and the commands in flight",
    "Every build appends crashes and host GPU failures to crashes.log in the"
   ]
