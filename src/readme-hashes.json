@@ -19,15 +19,16 @@
  },
  "Marvisak/VIctory": {
   "baseline": false,
-  "changed_at": "2026-11-24T00:18:54Z",
+  "changed_at": "2026-11-24T06:59:19Z",
   "releases": [],
-  "sha": "2028a9487ced6e162dbe1cfe26d3b2d0bc9d14255ce981ddbba15baa6ac1e3bf",
+  "sha": "a1f64bb3b89911c551bd175535c9ce09f36fe9e90af530e1bf8d96628a8eb0ae",
   "signals": [
    "Not playable yet. The title boots, runs its menus at its own 30 fps and",
    "Boot, first-boot screens (accessibility, language, settings, legal) works, 30 fps",
    "The world (first mission's intro) reached and runs with indirect draws; its title card renders, the scene after it is still dark; 0.5-1.8 s per frame",
    "VICTORY_D3D12_WARP=1, which renders on the software adapter.",
    "Textures Console tiled layouts and detiling for the modes the title uses Render-target metadata planes",
+   "The title also needs several GiB of available Windows commit at startup.",
    "VICTORY_DUMP_TARGETS=1 with the two above, saves every render target of those frames",
    "VICTORY_D3D12_DRED=1 on a GPU failure, the allocation hit and the commands in flight",
    "Every build appends crashes and host GPU failures to crashes.log in the"
@@ -42,23 +43,26 @@
  },
  "R0Y00/Xbox2Windows": {
   "baseline": false,
-  "changed_at": "2026-11-23T23:18:55Z",
+  "changed_at": "2026-11-24T06:59:19Z",
   "releases": [
    "gpu-check-v0.1.0"
   ],
-  "sha": "943805f9b75adc561e0f0837a24bbca89dbd3f93c103cd6785eda51af42b8cc3",
+  "sha": "f0788d11e7716dd5d4dd06bc05576a27bf2c870bb79109db17e787f30c1d070e",
   "signals": [
-   "Current status. Source-built programs run from PE entry to exit, and selected shader fixtures produce checked D3D12 output. Execution of the title's CPU code, full-game startup and frame rate remain unverified.",
+   "Current status. The full-package DXIL scan found a compiled route for 26,500 of 26,503 shader records. On an RTX 4060 Laptop, the local offline startup build plays the intro, accepts setup and enters loading. The language selector displays ",
    "x64 programs from PE entry A two-record archive reader runs with blast 1.3 decompression under Windows, the PE mapper and the recompiled build. The three agree on output bytes, callback order, completed records, allocations, releases and ex",
    "Raster draw from PE entry The shim-startup EXE reuses one D3D12 texture across three 64×64 draws, including a partial compute update and a pipeline change. Native, mapped and recompiled runs match all 16,384 RGBA bytes per frame. A skipped ",
-   "Two shadow submissions from PE entry A source-built EXE creates its device through the Xbox shim, chooses each shadow-map slot, and submits and waits for each frame through the fixture provider. Native, mapped and AOT runs compare both colo"
+   "Two shadow submissions from PE entry A source-built EXE creates its device through the Xbox shim, chooses each shadow-map slot, and submits and waits for each frame through the fixture provider. Native, mapped and AOT runs compare both colo",
+   "Zig cache. The two Zig fixtures are built by python -m ziglang build-exe. If that step stops the build with error: AccessDenied, point both Zig caches at writable directories before configuring: $env:ZIG_GLOBAL_CACHE_DIR = 'out/zig-global' ",
+   "[Experimental startup stand-ins and debugger (trap-by-default DLLs)](docs/startup-runtime.md) ctest --preset release --no-tests=error -R '^startup_stubs$' -V",
+   "[Desktop audio render sink and its three-case fixture (WASAPI)](docs/experiments.md#desktop-audio-render-sink) ctest --preset release --no-tests=error -R '^startup_audio_output$' -V"
   ]
  },
  "ivall/xcl": {
-  "baseline": true,
-  "changed_at": "2026-11-23T23:04:06Z",
+  "baseline": false,
+  "changed_at": "2026-11-24T06:59:19Z",
   "releases": [],
-  "sha": "4bc16f0c97051a6a8796b7b8cb0010f86cdf44e93a515443247aaf5b21e55e8f",
+  "sha": "4fe33a5e5da569f9ecb859d499f8121ff4b2d1827d867d8a6a2f37c67d77bdab",
   "signals": [
    "playable, Fortnite and XDefiant work as far as each game goes without its online services;",
    "Minecraft Preview Microsoft.MinecraftBeta 1.18.3064.0 ✅ fully playable –",
