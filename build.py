@@ -137,6 +137,7 @@ S.update({
  "req_note": ("Estimates only. A real port could ask for more or less. GPU and CPU examples are approximate relative performance, not exact equivalents.",
               "Solo estimaciones. Un port real podría pedir más o menos. Los ejemplos de GPU y CPU son rendimiento relativo aproximado, no equivalencias exactas."),
  "gpu_index_link": ("See the GPU compatibility list", "Ver la lista de compatibilidad por GPU"),
+ "cd_leonida": ("Leonida countdown", "Cuenta regresiva de Leonida"), "cd_cyberleek": ("Cyberleek countdown", "Cuenta regresiva de Cyberleek"),
 })
 J.update({
  "cpuUnknown": ("I don't know / not listed", "No sé / no aparece"),
@@ -145,7 +146,7 @@ J.update({
  "threadsWord": ("threads", "hilos"),
 })
 
-TODAY = datetime.date.today().isoformat()
+TODAY = datetime.datetime.now(datetime.timezone.utc).date().isoformat()   # UTC: coincide con el reloj de la cuenta regresiva
 LANGS2 = ("en", "es")
 LI = {"en": 0, "es": 1}
 OGLOC = {"en": "en_US", "es": "es_ES"}
@@ -256,7 +257,7 @@ def header_html(lang, depth, rest):
 
 def footer_html(lang, depth):
     i = LI[lang]; up = "../" * (depth - 1)
-    return (f'<footer><div class="wrap"><div class="mega" aria-hidden="true">PortRace VI</div><p><a href="{up}">PortRace VI</a> · <a href="{up}gpu/">{esc(S["gpu_index_link"][i])}</a></p>'
+    return (f'<footer><div class="wrap"><div class="mega" aria-hidden="true">PortRace VI</div><p><a href="{up}">PortRace VI</a> · <a href="{up}gpu/">{esc(S["gpu_index_link"][i])}</a> · <a href="{up}leonida-countdown/">{esc(S["cd_leonida"][i])}</a> · <a href="{up}cyberleek-countdown/">{esc(S["cd_cyberleek"][i])}</a></p>'
             f'<p>{esc(S["foot_disclaimer"][i])}</p><p>{esc(S["foot_correct"][i])}</p></div></footer>')
 
 def shell(lang, depth, rest, title, desc, body, ld):
@@ -607,6 +608,125 @@ def alerts_line(lang):
     return (f'<p class="fine alerts">{esc(txt)} <a href="{gh}/issues" rel="noopener" target="_blank">{esc(a)} ↗</a> · '
             f'<a href="{gh}/commits/main.atom" rel="noopener" target="_blank">{b} ↗</a></p>')
 
+
+# ======================================================================
+#  Páginas de "cuenta regresiva" (Leonida / Cyberleek): contador en vivo a la estimación
+# ======================================================================
+CD_KEYS = ("leonida", "cyberleek")
+
+def cd_data(lang, which):
+    m = eta_model(); b = m["best"]; dd = b["days"]; t = m["today"]
+    N = lambda n: fmt_int(n, lang)
+    target = plus(t, dd["realistic"])
+    n_other = len(DATA["projects"]) - 1
+    D, A, Z = N(dd["realistic"]), N(dd["fast"]), N(dd["slow"])
+    if lang == "en":
+        L = dict(days="days", hours="hours", min="min", sec="sec",
+                 cd_title="Time until the first playable community build (estimate)",
+                 range=f"Range {A}–{Z} days · estimated date {fmt_date(dstr(target), lang)}",
+                 caveat="Editorial estimate based on the pace of the projects. Not a promise, and not an official or leak-group timer.",
+                 passed="The estimated date has passed. Check the race tracker for the current status.",
+                 tracker="See the race tracker", dates="When could GTA 6 come to PC?", home="Home")
+        if which == "leonida":
+            L.update(
+                title="Leonida Countdown: When Will GTA 6 Run on PC? Live Estimate",
+                desc=f"Live countdown to the first playable community build of GTA VI on PC, based on Leonida and {n_other} other projects. Status, estimate in days and what comes next.",
+                h1="Leonida countdown: when will GTA 6 run on PC?",
+                lead="There is no official Leonida timer. This page counts down to our estimate for the first playable community build, and shows where Leonida really stands.",
+                h2a="What is the Leonida countdown?",
+                pa=(f"Leonida is the biggest community project trying to run the Xbox build of GTA VI natively on PC. People searching for a Leonida countdown usually want to know when it will be playable. "
+                    f"The clock above counts down to our estimate for the first playable community build from any of the {len(DATA['projects'])} projects we track, not only Leonida, because another project may get there first."),
+                h2b="Where Leonida stands today",
+                faq=[("Is there an official Leonida release date?", "No. Leonida is a community recompilation project with no release date, and its README says the game does not boot yet. Nothing on this page is a promise."),
+                     ("When will Leonida be playable?", f"Our editorial estimate for the first playable community build is about {D} days (range {A}–{Z}), counting every tracked project. It is recomputed with every update."),
+                     ("Why does Leonida's GitHub repository show a 404?", "On 23 November 2026 its repository began returning 404. The cause is not confirmed: it could be a move, a deletion, a privacy change or a takedown. We track it automatically and will update this page."),
+                     ("Is there an official PC version of GTA 6?", "No. Rockstar has not announced a PC version. See our estimate for an official release.")])
+        else:
+            L.update(
+                title="Cyberleek Countdown: What Happened and When GTA 6 Plays on PC",
+                desc="The Cyberleek countdown explained: what was promised, what was released and the live estimate for the first playable GTA VI build on PC, with sources.",
+                h1="Cyberleek countdown: what happened and what comes next",
+                lead="The countdown people were watching is over. Here is what happened, with press sources, and a live clock to the next milestone: a playable build.",
+                h2a="What was the Cyberleek countdown?",
+                pa=("Cyberleek is the group that claims to have leaked an Xbox build of GTA VI. It said the missing executable would be released on 23 November 2026. "
+                    "That countdown is over: the executable was reported released, a few hours early. People still search for the Cyberleek countdown (also spelled Cyberleeak), "
+                    "so this page shows what happened and counts down to what is next: the first playable community build. We never link to the group, its token or any download."),
+                h2b="",
+                faq=[("Did the Cyberleek countdown end?", "Yes. The executable was reported released on 23 November 2026, a few hours ahead of schedule, according to LevelUp, GameGPU and Notebookcheck. Its authenticity has not been independently confirmed."),
+                     ("What is the next countdown?", f"The first playable community build. Our editorial estimate is about {D} days (range {A}–{Z}) and it is recomputed with every update."),
+                     ("Is the Cyberleek build playable?", "No. None of the projects we track is playable. The furthest, by its own report, reaches the game world with a black screen."),
+                     ("Do you link to Cyberleek or the download?", "No. We report the story with press sources and never link to the group, its token or any download.")])
+    else:
+        L = dict(days="días", hours="horas", min="min", sec="seg",
+                 cd_title="Tiempo hasta el primer build jugable de la comunidad (estimado)",
+                 range=f"Rango {A}–{Z} días · fecha estimada {fmt_date(dstr(target), lang)}",
+                 caveat="Estimación editorial basada en el ritmo de los proyectos. No es una promesa ni un temporizador oficial o del grupo filtrador.",
+                 passed="La fecha estimada ya pasó. Mira el tracker de la carrera para ver el estado actual.",
+                 tracker="Ver el tracker de la carrera", dates="¿Cuándo podría salir GTA 6 en PC?", home="Inicio")
+        if which == "leonida":
+            L.update(
+                title="Cuenta regresiva de Leonida: ¿cuándo corre GTA 6 en PC?",
+                desc=f"Cuenta regresiva en vivo al primer build jugable de GTA VI en PC según Leonida y otros {n_other} proyectos. Estado, estimación en días y qué viene.",
+                h1="Cuenta regresiva de Leonida: ¿cuándo corre GTA 6 en PC?",
+                lead="No existe un temporizador oficial de Leonida. Esta página cuenta hacia nuestra estimación del primer build jugable de la comunidad y muestra en qué punto está Leonida de verdad.",
+                h2a="¿Qué es la cuenta regresiva de Leonida?",
+                pa=(f"Leonida es el proyecto comunitario más grande que intenta correr de forma nativa en PC el build de Xbox de GTA VI. Quien busca una cuenta regresiva de Leonida suele querer saber cuándo será jugable. "
+                    f"El reloj de arriba cuenta hacia nuestra estimación del primer build jugable de la comunidad de cualquiera de los {len(DATA['projects'])} proyectos que seguimos, no solo Leonida, porque otro podría llegar antes."),
+                h2b="En qué punto está Leonida hoy",
+                faq=[("¿Hay una fecha oficial de Leonida?", "No. Leonida es un proyecto comunitario de recompilación sin fecha de lanzamiento, y su README dice que el juego aún no arranca. Nada de esta página es una promesa."),
+                     ("¿Cuándo será jugable Leonida?", f"Nuestra estimación editorial para el primer build jugable de la comunidad es de unos {D} días (rango {A}–{Z}), contando todos los proyectos seguidos. Se recalcula con cada actualización."),
+                     ("¿Por qué el repositorio de GitHub de Leonida da 404?", "El 23 de noviembre de 2026 su repositorio empezó a dar 404. La causa no está confirmada: puede ser una mudanza, un borrado, un cambio a privado o un takedown. Lo seguimos automáticamente y actualizaremos esta página."),
+                     ("¿Hay versión oficial de GTA 6 para PC?", "No. Rockstar no ha anunciado versión de PC. Mira nuestra estimación de un lanzamiento oficial.")])
+        else:
+            L.update(
+                title="Cuenta regresiva de Cyberleek: qué pasó y cuándo se juega GTA 6",
+                desc="La cuenta regresiva de Cyberleek explicada: qué se prometió, qué se publicó y la estimación en vivo del primer build jugable de GTA VI en PC, con fuentes.",
+                h1="Cuenta regresiva de Cyberleek: qué pasó y qué viene",
+                lead="La cuenta regresiva que todos miraban terminó. Esto es lo que pasó, con fuentes de prensa, y un reloj en vivo hacia el siguiente hito: un build jugable.",
+                h2a="¿Qué era la cuenta regresiva de Cyberleek?",
+                pa=("Cyberleek es el grupo que afirma haber filtrado un build de Xbox de GTA VI. Dijo que el ejecutable que faltaba saldría el 23 de noviembre de 2026. "
+                    "Esa cuenta terminó: el ejecutable se reportó publicado, unas horas antes. La gente sigue buscando la cuenta regresiva de Cyberleek (también escrito Cyberleeak), "
+                    "así que esta página muestra qué pasó y cuenta hacia lo que sigue: el primer build jugable de la comunidad. Nunca enlazamos al grupo, a su token ni a ninguna descarga."),
+                h2b="",
+                faq=[("¿Terminó la cuenta regresiva de Cyberleek?", "Sí. El ejecutable se reportó publicado el 23 de noviembre de 2026, unas horas antes de lo previsto, según LevelUp, GameGPU y Notebookcheck. Su autenticidad no está confirmada de forma independiente."),
+                     ("¿Cuál es la siguiente cuenta regresiva?", f"El primer build jugable de la comunidad. Nuestra estimación editorial es de unos {D} días (rango {A}–{Z}) y se recalcula con cada actualización."),
+                     ("¿Es jugable el build de Cyberleek?", "No. Ninguno de los proyectos que seguimos es jugable. El más avanzado, según su propio reporte, llega al mundo del juego con pantalla negra."),
+                     ("¿Enlazan a Cyberleek o a la descarga?", "No. Contamos la historia con fuentes de prensa y nunca enlazamos al grupo, a su token ni a ninguna descarga.")])
+    return L, target, dd
+
+def countdown_page(lang, which):
+    L, target, dd = cd_data(lang, which)
+    rest = f"{which}-countdown/"
+    crumb = (L["home"], L["h1"].split(":")[0])
+    iso = datetime.datetime.combine(target, datetime.time(0, 0)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    box = lambda u, n, lab: f'<div class="cd-box"><b data-u="{u}">{n}</b><span>{esc(lab)}</span></div>'
+    clock = (f'<div class="cd" id="cd" data-target="{iso}" role="timer" aria-label="{esc(L["cd_title"])}">'
+             + box("d", dd["realistic"], L["days"]) + box("h", "00", L["hours"]) + box("m", "00", L["min"]) + box("s", "00", L["sec"]) + '</div>'
+             f'<p class="cd-passed" id="cdp" hidden>{esc(L["passed"])}</p>')
+    card = (f'<div class="cd-wrap"><p class="label">{esc(L["cd_title"])}</p>{clock}'
+            f'<p class="cd-range">{esc(L["range"])}</p><p class="edit-note">{esc(L["caveat"])}</p>'
+            f'<p class="cd-links"><a class="btn pri" href="../../#race">{esc(L["tracker"])}</a> '
+            f'<a class="btn sec" href="../gta-6-pc-release-date/">{esc(L["dates"])}</a></p></div>')
+    sec_a = f'<section><div class="wrap"><div class="prose"><h2>{esc(L["h2a"])}</h2><p>{esc(L["pa"])}</p></div></div></section>'
+    extra = ""
+    if which == "leonida":
+        pr = next(p for p in DATA["projects"] if p["name"] == "Leonida")
+        ladder = "".join(f'<li><i class="dot {pr["status"][mm["id"]]}"></i>{esc(mm[lang])}</li>' for mm in DATA["milestones"])
+        extra = (f'<section class="alt"><div class="wrap"><div class="head"><h2>{esc(L["h2b"])}</h2><p>{esc(pr["highlight"][lang])}</p></div>'
+                 f'<ul class="ladder">{ladder}</ul><p class="note">{esc(pr["note"][lang])}</p></div></section>')
+    else:
+        extra = leak_section(lang)
+    faq_h = "Quick answers" if lang == "en" else "Respuestas rápidas"
+    faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in L["faq"])
+    body = (hero(crumbs(lang, 2, [(crumb[0], "../"), (crumb[1], None)]) + f"<h1>{esc(L['h1'])}</h1><p>{esc(L['lead'])}</p>")
+            + f'<section><div class="wrap">{card}</div></section>' + sec_a + extra
+            + f'<section><div class="wrap"><div class="head"><h2>{faq_h}</h2></div>{faq}</div></section>'
+            + '<script src="../../assets/countdown.js"></script>')
+    ld = {"@context": "https://schema.org", "@graph": [
+        bc_ld(lang, [(crumb[0], f"{BASE}/{lang}/"), (crumb[1], f"{BASE}/{lang}/{rest}")]),
+        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in L["faq"]]}]}
+    return shell(lang, 2, rest, L["title"], L["desc"], body, ld)
+
 # ======================================================================
 #  Generación
 # ======================================================================
@@ -634,13 +754,16 @@ for lang in LANGS2:
     (ROOT / lang / "index.html").write_text(html, encoding="utf-8")
     (ROOT / lang / "gta-6-pc-release-date").mkdir(exist_ok=True)
     (ROOT / lang / "gta-6-pc-release-date" / "index.html").write_text(release_page(lang), encoding="utf-8")
+    for _w in CD_KEYS:
+        (ROOT / lang / f"{_w}-countdown").mkdir(exist_ok=True)
+        (ROOT / lang / f"{_w}-countdown" / "index.html").write_text(countdown_page(lang, _w), encoding="utf-8")
     (ROOT / lang / "gpu").mkdir(exist_ok=True)
     (ROOT / lang / "gpu" / "index.html").write_text(gpu_index(lang, ranked), encoding="utf-8")
     for g in GPUS:
         d = ROOT / lang / "gpu" / g["slug"]; d.mkdir(exist_ok=True)
         (d / "index.html").write_text(gpu_page(lang, g, ranked), encoding="utf-8")
 
-urls = ["", "gta-6-pc-release-date/"] + ["gpu/"] + [f"gpu/{g['slug']}/" for g in GPUS]
+urls = ["", "gta-6-pc-release-date/", "leonida-countdown/", "cyberleek-countdown/"] + ["gpu/"] + [f"gpu/{g['slug']}/" for g in GPUS]
 
 # strings.js
 def flat(i):
@@ -650,17 +773,22 @@ def flat(i):
     return out
 (ROOT / "assets/strings.js").write_text("window.STR=" + json.dumps({l: flat(LI[l]) for l in LANGS2}, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
 
-# sitemap.xml con hreflang
-sm = ['<?xml version="1.0" encoding="UTF-8"?>',
-      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
-for u in urls:
-    for l in LANGS2:
-        sm.append(f"<url><loc>{BASE}/{l}/{u}</loc><lastmod>{TODAY}</lastmod>"
+# sitemaps: uno por idioma DENTRO de /en/ y /es/ (valido aunque la propiedad de Search Console sea solo una carpeta)
+# y un indice en la raiz que apunta a ambos
+def urlset(lang):
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+    for u in urls:
+        sm.append(f"<url><loc>{BASE}/{lang}/{u}</loc><lastmod>{TODAY}</lastmod>"
                   + "".join(f'<xhtml:link rel="alternate" hreflang="{x}" href="{BASE}/{x}/{u}"/>' for x in LANGS2)
                   + f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}/en/{u}"/></url>')
-sm.append("</urlset>")
-(ROOT / "sitemap.xml").write_text("\n".join(sm) + "\n", encoding="utf-8")
-(ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
+    sm.append("</urlset>")
+    return "\n".join(sm) + "\n"
+for _l in LANGS2:
+    (ROOT / _l / "sitemap.xml").write_text(urlset(_l), encoding="utf-8")
+(ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + "".join(f"<sitemap><loc>{BASE}/{_l}/sitemap.xml</loc><lastmod>{TODAY}</lastmod></sitemap>\n" for _l in LANGS2) + "</sitemapindex>\n", encoding="utf-8")
+(ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\nSitemap: {BASE}/en/sitemap.xml\nSitemap: {BASE}/es/sitemap.xml\n", encoding="utf-8")
 (ROOT / ".nojekyll").write_text("", encoding="utf-8")
 
 # raíz: redirige según idioma (con canonical y hreflang para buscadores)

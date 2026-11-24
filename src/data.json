@@ -279,8 +279,8 @@
     "es": "Los 26.503 shaders traducidos y validados, el juego aún no arranca"
    },
    "note": {
-    "en": "Its GitHub repository returned 404 on 2026-11-23. The cause is not confirmed (move, deletion, privacy change or takedown). Its README listed a self-hosted mirror that did not respond when we checked. The status below is the last known one.",
-    "es": "Su repositorio de GitHub dio 404 el 2026-11-23. La causa no está confirmada (mudanza, borrado, cambio a privado o takedown). Su README listaba un espejo propio que no respondió cuando lo revisamos. El estado de abajo es el último conocido."
+    "en": "Its GitHub repository returned 404 on 2026-11-23. The cause is not confirmed (move, deletion, privacy change or takedown). Its README listed a self-hosted mirror that did not respond when we checked. The status shown is the last known one.",
+    "es": "Su repositorio de GitHub dio 404 el 2026-11-23. La causa no está confirmada (mudanza, borrado, cambio a privado o takedown). Su README listaba un espejo propio que no respondió cuando lo revisamos. El estado que se muestra es el último conocido."
    },
    "metrics": [
     {

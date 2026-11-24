@@ -27,18 +27,33 @@
   onScroll();
 
   /* aparición al hacer scroll, escalonada */
-  if (!reduce && "IntersectionObserver" in window) {
-    var sel = ".head,.card,.metric,.claim,.timeline li,.gantt,.box,.linklist li,.tablewrap,details,.answer,.edit-note,form.panel,.phone,.sub-h";
-    var io = new IntersectionObserver(function (entries) {
+  if (!reduce) {
+    var sel = ".head,.card,.metric,.claim,.timeline li,.gantt,.box,.linklist li,.tablewrap,details,.answer,.edit-note,form.panel,.phone,.sub-h,.days li,.cd-wrap";
+    var io = ("IntersectionObserver" in window) ? new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-    var seen = new Map();
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }) : null;
+    var seen = new Map(), rvEls = [];
     $$(sel).forEach(function (el) {
       if (el.closest(".hero")) return;
       var p = el.parentElement, n = seen.get(p) || 0; seen.set(p, n + 1);
       el.style.setProperty("--d", Math.min(n, 6) * 0.08 + "s");
-      el.classList.add("rv"); io.observe(el);
+      el.classList.add("rv"); rvEls.push(el); if (io) io.observe(el);
     });
+    // Respaldo que no depende del observador: revisa por posición al hacer scroll / cambiar el tamaño.
+    function revealVisible() {
+      var h = window.innerHeight || document.documentElement.clientHeight;
+      rvEls.forEach(function (el) {
+        if (el.classList.contains("in")) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < h * 0.94 && r.bottom > 0) { el.classList.add("in"); if (io) io.unobserve(el); }
+      });
+    }
+    window.addEventListener("scroll", revealVisible, { passive: true });
+    window.addEventListener("resize", revealVisible);
+    window.addEventListener("load", revealVisible);
+    revealVisible();
+    // Seguro final: si algo sigue oculto a los 10 s (navegador raro, captura, impresión), se muestra todo.
+    setTimeout(function () { rvEls.forEach(function (el) { el.classList.add("in"); }); }, 10000);
   }
 
   if (!fine || reduce) return;
