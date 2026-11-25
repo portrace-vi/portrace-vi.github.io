@@ -46,11 +46,11 @@
  },
  "R0Y00/Xbox2Windows": {
   "baseline": false,
-  "changed_at": "2026-11-25T02:51:05Z",
+  "changed_at": "2026-11-25T11:49:28Z",
   "releases": [
    "gpu-check-v0.1.0"
   ],
-  "sha": "b470ddf277a97c2171cd384a40958c89ad1789b932fc5811dbcdea30c77cc86b",
+  "sha": "8251116abf7257ee7486b4ffd53272af537d87889a8a2cb572309446e715ad93",
   "signals": [
    "Startup. On an RTX 4060 Laptop, a modified diagnostic EXE with automatic assertion continuation played the intro, displayed readable setup text and reached loading. Startup of the original EXE, main-menu navigation and gameplay remain unver",
    "x64 programs from PE entry A two-record archive reader runs with blast 1.3 decompression under Windows, the PE mapper and the recompiled build. The three agree on output bytes, callback order, completed records, allocations, releases and ex",
@@ -58,19 +58,26 @@
    "Two shadow submissions from PE entry A source-built EXE creates its device through the Xbox shim, chooses each shadow-map slot, and submits and waits for each frame through the fixture provider. Native, mapped and AOT runs compare both colo",
    "Zig cache. The two Zig fixtures are built by python -m ziglang build-exe. If that step stops the build with error: AccessDenied, point both Zig caches at writable directories before configuring: $env:ZIG_GLOBAL_CACHE_DIR = 'out/zig-global' ",
    "[Experimental startup stand-ins and debugger (trap-by-default DLLs)](docs/startup-runtime.md) ctest --preset release --no-tests=error -R '^startup_stubs$' -V",
+   "[Sample a texture by address in a translated draw](docs/startup-runtime.md#textures-published-by-address-device-slot-70) ctest --preset release --no-tests=error -R '^startup_address_console_' -V",
    "[Desktop audio render sink and its three-case fixture (WASAPI)](docs/experiments.md#desktop-audio-render-sink) ctest --preset release --no-tests=error -R '^startup_audio_output$' -V",
-   "Startup scalar sign-extend and conditional move Translate [s_sext_i32_i8/i16, s_cmov_b32/b64 and s_cmovk_i32](docs/experiments.md#startup-scalar-sign-extend-and-conditional-move) in the startup shader translator. CPU evaluation only; no Win"
+   "gfx1013 pixel DPP quad broadcast Lower quad_perm:[k,k,k,k] on VOP1/VOP2 after s_wqm exec, exec in a straight-line pixel stage to QuadReadLaneAt (ps_6_0, DXC); draw 16 x 16 pixels and compare with a CPU reference. [Scope and limits](docs/exp",
+   "Startup compute mip-zero gather Dispatch a [gfx1013 image_gather4_lz](docs/experiments.md#compute-mip-zero-gather) and compare four texels from the first visible mip against a CPU reference. ctest --preset dev --no-tests=error -R '^startup_",
+   "Startup compute D16 image store Write [four packed half-floats](docs/experiments.md#startup-compute-d16-image-store) per active thread and check all three mips. ctest --preset dev --no-tests=error -R '^startup_compute_image_store_d16'",
+   "Startup scalar sign-extend and conditional move Translate [s_sext_i32_i8/i16, s_cmov_b32/b64 and s_cmovk_i32](docs/experiments.md#startup-scalar-sign-extend-and-conditional-move) in the startup shader translator. CPU evaluation only; no Win",
+   "Startup compute masked bit count Compare [gfx1013 low- and high-half mask counts](docs/experiments.md#startup-compute-masked-bit-count) across two 32-thread groups on WARP and hardware. ctest --preset dev --no-tests=error -R '^startup_gfx2h",
+   "Startup calculated shader branches Resolve [statically proven PC-relative targets](docs/experiments.md#startup-translator-statically-proven-calculated-branches) with source-built CFG and arithmetic controls. No GPU readback yet. python3 -B "
   ]
  },
  "ivall/xcl": {
   "baseline": false,
-  "changed_at": "2026-11-25T02:51:05Z",
+  "changed_at": "2026-11-25T11:49:28Z",
   "releases": [],
-  "sha": "7cc49fbdcf27d8062113e3e195a1ffcccb96e45050b630bfad221067e6513ded",
+  "sha": "855bf2a92aba2b20c45bfeebf3ae0fd29bf7ba0062a261ac862bb9f3322a279e",
   "signals": [
-   "Minecraft Preview Microsoft.MinecraftBeta 1.18.3064.0 ✅ fully playable –",
-   "Unicorn Overlord SEGAofAmericaInc.Pa253b0c1Y 1.0.0.6 ✅ fully playable –",
-   "A newer retail game – 🚧 starts in ~4 s, runs at a steady 30 fps without a crash, shows its menus and goes on past the first one to its settings; fits a 32 GB machine (~15 GB committed in the menus) gameplay not reached yet; its minimap mesh",
+   "<img src=\"assets/readme/status.svg\" width=\"100%\" alt=\"A newer retail game, about 60 % of the way to playable (estimate): ~4 s to its first frame, 30 fps in its menus, ~5 fps in its 3D world, 100 % of its shaders translate\">",
+   "Minecraft Preview<br><sub>Microsoft.MinecraftBeta 1.18.3064.0</sub> ✅&nbsp;playable fully playable –",
+   "Unicorn Overlord<br><sub>SEGAofAmericaInc.Pa253b0c1Y 1.0.0.6</sub> ✅&nbsp;playable fully playable –",
+   "A newer retail game 🚧&nbsp;≈&nbsp;60&nbsp;%<br><sub>estimate</sub> starts in ~4 s, runs at a steady 30 fps without a crash, shows its menus and goes on past the first one to its settings; fits a 32 GB machine (~15 GB committed in the menus)",
    "D3D12.X graphics ✅ device, resources and heaps (also placed in title memory), pipelines; the title's graphics command lists – draws, indirect draws, graphics root arguments, barriers, copies, clears – and command lists recorded by console c",
    "With XCL_DRED=1, a D3D12 device removal logs GPU breadcrumbs in xcl.log.",
    "null if its format cannot be decoded. Intermediate render-target dumps do not update it.",
@@ -79,23 +86,24 @@
  },
  "rpatty-dev/PercyScarlett": {
   "baseline": false,
-  "changed_at": "2026-11-24T18:38:31Z",
+  "changed_at": "2026-11-25T11:49:28Z",
   "releases": [
+   "v1.0.0",
    "v0.9.0",
    "v0.4.0",
    "v0.3.11",
-   "v0.3.10",
-   "v0.3.9"
+   "v0.3.10"
   ],
-  "sha": "eb85950b3d2025b749365118cd28a9569182f122e42ffb874474c3ef48411501",
+  "sha": "754eea8ed7116dfae449b93b470d1161f5e5a3928c118a27812a86ebe2797687",
   "signals": [
-   "v0.9: a retail Scarlett title reaches the main menu and plays in-world, and the pipeline is ready for TheBig6 😉.",
    "![Minecraft Scarlett build in-world on PercyScarlett](docs/proof/minecraft_ingame_percy.png)",
    "Main menu Loading",
    "![Main menu](docs/proof/minecraft_xsx_main_menu.png) ![Loading](docs/proof/minecraft_xsx_loading_render.png)",
    "Main menu renders at several hundred FPS. In-world is ~45-50 FPS on an RTX 2060 SUPER before the v0.9 VRAM mirror (verification of the mirror is in progress).",
    "Retail Xbox Series X\\ S game Minecraft (Scarlett build, unmodified exe): boots, main menu, creates/saves/reloads a world, in-game screenshots above",
-   "TheBig6 😉 Clean-room graphics bring-up: RDNA2/GFX10 VS+PS lifted to SM 6.6 HLSL and bound into live PC graphics PSOs; renders account picker, true-color 4K Bink2 video playback, and full FTUE/setup UI flow with persistent settings, XInput g"
+   "TheBig6 😉 v1.0: reaches the opening prison scene, lit and textured, on the Series S profile with an 8 GB card (about 2-3 fps on an RTX 2060 SUPER). Menus, Bink2 video, save data and world streaming work. Shaded areas are still too dark runt",
+   "Series S (default) about 2-3 fps lit world, fits an 8 GB card",
+   "Series X about 1 fps more VRAM, spills into system RAM on 8 GB cards"
   ]
  }
 }
