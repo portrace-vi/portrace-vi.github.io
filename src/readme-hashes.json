@@ -79,9 +79,9 @@
  },
  "ivall/xcl": {
   "baseline": false,
-  "changed_at": "2026-11-26T03:15:47Z",
+  "changed_at": "2026-11-26T21:59:39Z",
   "releases": [],
-  "sha": "21afb5b314f1d05b77e39799a444cbd71163e85a7ddbc7f211a2bfb944e125e5",
+  "sha": "2294e77d5a93acc7a0c010c9e542fb4f2d44ade12d69ed8f95ae6f595fc4eb6b",
   "signals": [
    "<img src=\"assets/readme/status.svg\" width=\"100%\" alt=\"A newer retail game, about 60 % of the way to playable (estimate): ~4 s to its first frame, 30 fps in its menus, ~5 fps in its 3D world, 100 % of its shaders translate\">",
    "Minecraft Preview<br><sub>Microsoft.MinecraftBeta 1.18.3064.0</sub> ✅&nbsp;playable fully playable –",
