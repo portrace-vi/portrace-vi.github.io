@@ -19,12 +19,13 @@
  },
  "Marvisak/VIctory": {
   "baseline": false,
-  "changed_at": "2026-11-25T20:44:29Z",
+  "changed_at": "2026-11-26T03:15:47Z",
   "releases": [],
-  "sha": "c4d42fe7466055378dc24f0a12e66e6cb5235d32aa0efff06fc801e5cee2dfce",
+  "sha": "7aa3bf9a409402b32f6d645b36cf90277c790b174f7264d210f018959dc41402",
   "signals": [
-   "Not playable yet, but you can get into the game. The title boots, runs",
-   "its menus at its own 30 fps, loads the world, plays the intro cutscene and",
+   "Not playable yet, because of the framerate: about 1 frame per second in the",
+   "world. Nothing else keeps the game from working: the title boots, runs its",
+   "menus at its own 30 fps, loads the world, plays the intro cutscene and",
    "Boot, first-boot screens (accessibility, language, settings, legal) works, 30 fps",
    "The intro cutscene plays at about 1 fps (0.9-1.0 s a frame, warm cache, quiet machine): textured and lit characters with whole hair, buildings, sky, depth of field, the title card, credits and interface. Missing: ray-traced shadows and indi",
    "The prologue reached; the graphics are fully displayed, at about 1 fps",
@@ -49,11 +50,11 @@
  },
  "R0Y00/Xbox2Windows": {
   "baseline": false,
-  "changed_at": "2026-11-25T20:44:29Z",
+  "changed_at": "2026-11-26T03:15:47Z",
   "releases": [
    "gpu-check-v0.1.0"
   ],
-  "sha": "72c0c68ab854e9e1ae7b741841ce4fa258bc8f99c6c969ce18534633e2a343bc",
+  "sha": "883af19fa30d88235e09306b73615c82271516c6644c7c713df0e815c64490cb",
   "signals": [
    "Startup. On an RTX 4060 Laptop, a modified diagnostic EXE with automatic assertion continuation played the intro, displayed readable setup text and reached loading. Startup of the original EXE, main-menu navigation and gameplay remain unver",
    "x64 programs from PE entry A two-record archive reader runs with blast 1.3 decompression under Windows, the PE mapper and the recompiled build. The three agree on output bytes, callback order, completed records, allocations, releases and ex",
@@ -77,9 +78,9 @@
  },
  "ivall/xcl": {
   "baseline": false,
-  "changed_at": "2026-11-25T20:44:29Z",
+  "changed_at": "2026-11-26T03:15:47Z",
   "releases": [],
-  "sha": "c2dc2e0943fb2f65346c48eee9544aaa5829c7a508e3ad6259251edb64f99b37",
+  "sha": "21afb5b314f1d05b77e39799a444cbd71163e85a7ddbc7f211a2bfb944e125e5",
   "signals": [
    "<img src=\"assets/readme/status.svg\" width=\"100%\" alt=\"A newer retail game, about 60 % of the way to playable (estimate): ~4 s to its first frame, 30 fps in its menus, ~5 fps in its 3D world, 100 % of its shaders translate\">",
    "Minecraft Preview<br><sub>Microsoft.MinecraftBeta 1.18.3064.0</sub> ✅&nbsp;playable fully playable –",
