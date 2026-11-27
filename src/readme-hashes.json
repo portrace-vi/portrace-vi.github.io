@@ -50,11 +50,11 @@
  },
  "R0Y00/Xbox2Windows": {
   "baseline": false,
-  "changed_at": "2026-11-27T03:57:09Z",
+  "changed_at": "2026-11-27T22:09:42Z",
   "releases": [
    "gpu-check-v0.1.0"
   ],
-  "sha": "230a1dcea8df4c2bc93acf495f8dce58f7fa96b7313b47253f21043de26cd63f",
+  "sha": "066fe23381dc41f6c6aa5a7d23b8476722c75798d4c9f18a8a467974f03e166e",
   "signals": [
    "Startup. On an RTX 4060 Laptop, a modified diagnostic EXE with automatic assertion continuation played the intro, displayed readable setup text and reached loading. Startup of the original EXE, main-menu navigation and gameplay remain unver",
    "x64 programs from PE entry A two-record archive reader runs with blast 1.3 decompression under Windows, the PE mapper and the recompiled build. The three agree on output bytes, callback order, completed records, allocations, releases and ex",
@@ -79,9 +79,9 @@
  },
  "ivall/xcl": {
   "baseline": false,
-  "changed_at": "2026-11-27T13:22:00Z",
+  "changed_at": "2026-11-27T22:09:42Z",
   "releases": [],
-  "sha": "0caa5e9259aafe25dae24bda3f3cd3856a9302be32e892ac799ec9a5812e4000",
+  "sha": "f42431dbeecdc6aac034e184ae81f06c639878f0bee7681857cc37f41c9cbdb3",
   "signals": [
    "<img src=\"assets/readme/status.svg\" width=\"100%\" alt=\"A newer retail game, about 60 % of the way to playable (estimate): ~4 s to its first frame, 30 fps in its menus, ~5 fps in its 3D world, 100 % of its shaders translate\">",
    "Minecraft Preview<br><sub>Microsoft.MinecraftBeta 1.18.3064.0</sub> ✅&nbsp;playable fully playable –",
