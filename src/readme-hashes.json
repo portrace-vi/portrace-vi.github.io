@@ -50,11 +50,11 @@
  },
  "R0Y00/Xbox2Windows": {
   "baseline": false,
-  "changed_at": "2026-11-27T22:09:42Z",
+  "changed_at": "2026-11-28T04:01:56Z",
   "releases": [
    "gpu-check-v0.1.0"
   ],
-  "sha": "066fe23381dc41f6c6aa5a7d23b8476722c75798d4c9f18a8a467974f03e166e",
+  "sha": "4d415091f631491fa0072a9ec9ad5d5c706856e3cb81390df1a256bc03481651",
   "signals": [
    "Startup. On an RTX 4060 Laptop, a modified diagnostic EXE with automatic assertion continuation played the intro, displayed readable setup text and reached loading. Startup of the original EXE, main-menu navigation and gameplay remain unver",
    "x64 programs from PE entry A two-record archive reader runs with blast 1.3 decompression under Windows, the PE mapper and the recompiled build. The three agree on output bytes, callback order, completed records, allocations, releases and ex",
@@ -64,6 +64,7 @@
    "[Cached indirect mesh with a depth-only pixel stage](docs/experiments.md#gpu-written-indirect-mesh-dispatch-arguments) ctest --preset release --no-tests=error -R '^startup_indirect_mesh_cache_' -V",
    "[Cached mesh draw with two queue writers](docs/experiments.md#cached-mesh-draw-with-two-queue-writers) ctest --preset release --no-tests=error -R '^startup_indirect_mesh_lease_(warp\\ hardware)_dual' -V",
    "[Experimental startup stand-ins and debugger (trap-by-default DLLs)](docs/startup-runtime.md) ctest --preset release --no-tests=error -R '^startup_stubs$' -V",
+   "[Diagnostic fallback for missing graphics shader translations](docs/experiments/missing-shader-fallback.md) ctest --preset dev --no-tests=error -R '^startup_missing_shader_fallback(_off)?_warp$' -V",
    "[Sample a texture by address in a translated draw](docs/startup-runtime.md#textures-published-by-address-device-slot-70) ctest --preset release --no-tests=error -R '^startup_address_console_' -V",
    "[Desktop audio render sink and its three-case fixture (WASAPI)](docs/experiments.md#desktop-audio-render-sink) ctest --preset release --no-tests=error -R '^startup_audio_output$' -V",
    "gfx1013 pixel DPP quad broadcast Lower quad_perm:[k,k,k,k] on VOP1/VOP2 after s_wqm exec, exec in a straight-line pixel stage to QuadReadLaneAt (ps_6_0, DXC); draw 16 x 16 pixels and compare with a CPU reference. [Scope and limits](docs/exp",
@@ -79,15 +80,16 @@
  },
  "ivall/xcl": {
   "baseline": false,
-  "changed_at": "2026-11-27T22:09:42Z",
+  "changed_at": "2026-11-28T04:01:56Z",
   "releases": [],
-  "sha": "f42431dbeecdc6aac034e184ae81f06c639878f0bee7681857cc37f41c9cbdb3",
+  "sha": "9796c127983774034f595677c890ff768c207ede3731ef2bcb3669ffea7d4a5a",
   "signals": [
    "<img src=\"assets/readme/status.svg\" width=\"100%\" alt=\"A newer retail game, about 60 % of the way to playable (estimate): ~4 s to its first frame, 30 fps in its menus, ~5 fps in its 3D world, 100 % of its shaders translate\">",
    "Minecraft Preview<br><sub>Microsoft.MinecraftBeta 1.18.3064.0</sub> ✅&nbsp;playable fully playable –",
    "Unicorn Overlord<br><sub>SEGAofAmericaInc.Pa253b0c1Y 1.0.0.6</sub> ✅&nbsp;playable fully playable –",
    "A newer retail game 🚧&nbsp;≈&nbsp;60&nbsp;%<br><sub>estimate</sub> starts in ~4 s, runs at a steady 30 fps without a crash, shows its menus and goes on past the first one to its settings; fits a 32 GB machine (~15 GB committed in the menus)",
    "D3D12.X graphics ✅ device, resources and heaps (also placed in title memory), pipelines; the title's graphics command lists – draws, indirect draws, graphics root arguments, barriers, copies, clears – and command lists recorded by console c",
+   "to skip startup preparation, or XCL_PREPARE_GRAPHICS=0 to skip optional graphics history.",
    "With XCL_DRED=1, a D3D12 device removal logs GPU breadcrumbs in xcl.log.",
    "null if its format cannot be decoded. Intermediate render-target dumps do not update it.",
    "A coarse sample can miss detail; a non-dark sample does not establish correct rendering or gameplay."
